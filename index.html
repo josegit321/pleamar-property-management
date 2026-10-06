@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pleamar · Administración de villas en Guanacaste</title>
+<meta name="description" content="Administración integral de villas de lujo en Tamarindo y Guanacaste: huéspedes, limpieza, mantenimiento y reportes para el dueño.">
+<meta name="theme-color" content="#0A2328">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/67.webp">
+<style>
+:root{
+  --ink:#0A2328; --ink-2:#0F2F36; --ink-3:#174450;
+  --on-ink:#ECF3F1; --on-ink-2:#A8C3BF; --line-ink:rgba(178,220,214,.17);
+  --salt:#F1F4F2; --salt-2:#E2E9E6; --paper:#FBFCFB;
+  --text:#0B2328; --text-2:#435A5D; --line:rgba(11,35,40,.14);
+  --sun:#F3AA3C; --sun-deep:#8F5300; --sea:#6CCFBE;
+  --display:"Antonio", "Arial Narrow", sans-serif;
+  --body:"Hanken Grotesk", system-ui, sans-serif;
+  --gut:clamp(16px, 4vw, 56px);
+  --max:1360px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--salt);color:var(--text);font:400 1.0625rem/1.6 var(--body);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+::selection{background:var(--sun);color:var(--ink)}
+:focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:2px}
+a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:1px}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:-.005em;line-height:1;margin:0;text-wrap:balance}
+h2{font-size:clamp(2.6rem,5.4vw,4.75rem);line-height:1.06}
+h3{font-size:1.5rem;line-height:1.05}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.ink{background:var(--ink);color:var(--on-ink)}
+.ink ::selection{background:var(--sun);color:var(--ink)}
+.lede{font-size:1.1875rem;line-height:1.55;max-width:56ch;color:var(--text-2)}
+.ink .lede{color:var(--on-ink-2)}
+.skip{position:absolute;left:-999px;top:8px;z-index:100;background:var(--sun);color:var(--ink);padding:10px 16px;font-weight:600}
+.skip:focus{left:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ic{width:1.15em;height:1.15em;flex:none;vertical-align:-.2em}
+.mark-done{color:var(--sea)} .mark-now{color:var(--sun)} .mark-sched{color:var(--on-ink-2)}
+.num{font-family:var(--display);font-weight:400;letter-spacing:.005em}
+
+/* buttons & fields */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:0 26px;border:0;border-radius:3px;background:var(--sun);color:var(--ink);font:600 1rem/1 var(--body);letter-spacing:.01em;cursor:pointer;text-decoration:none;transition:background .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease);box-shadow:0 1px 1px rgba(0,0,0,.12),0 8px 18px -10px rgba(0,0,0,.45)}
+.btn:hover{background:#FFBE5C;transform:translateY(-1px);box-shadow:0 2px 2px rgba(0,0,0,.12),0 14px 26px -12px rgba(0,0,0,.5)}
+.btn:active{transform:translateY(0)}
+.btn[disabled]{opacity:.55;cursor:progress;transform:none}
+.btn .ic{transition:transform .25s var(--ease)}
+.btn:hover .ic{transform:translateX(3px)}
+.btn-ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1px currentColor}
+.btn-ghost:hover{background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px currentColor}
+label{display:block}
+.field-label{display:block;font-size:.8125rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;color:var(--on-ink-2)}
+select,input,textarea{width:100%;min-height:52px;padding:12px 14px;border-radius:3px;border:1px solid var(--line-ink);background:var(--ink-2);color:var(--on-ink);font:500 1rem/1.3 var(--body);appearance:none;-webkit-appearance:none;transition:border-color .2s,background .2s}
+textarea{min-height:120px;resize:vertical}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23A8C3BF' stroke-width='1.6'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;cursor:pointer}
+select option{background:var(--ink);color:var(--on-ink)}
+input::placeholder,textarea::placeholder{color:#7F9C99}
+select:hover,input:hover,textarea:hover{border-color:rgba(178,220,214,.38)}
+select:focus,input:focus,textarea:focus{outline:none;border-color:var(--sun);background:var(--ink-3)}
+[aria-invalid="true"]{border-color:#FF8A7A}
+.err{display:block;min-height:1.2em;margin-top:6px;font-size:.875rem;color:#FFB3A8}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto;z-index:50;color:var(--on-ink);transition:background .35s var(--ease),box-shadow .35s var(--ease)}
+.nav.solid{background:rgba(10,35,40,.96);box-shadow:0 1px 0 var(--line-ink)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:76px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 1.6rem/1 var(--display);letter-spacing:.14em}
+.brand svg{width:30px;height:16px;color:var(--sun)}
+.nav-links{display:flex;gap:26px;margin-left:auto;font-size:.9375rem;font-weight:500}
+.nav-links a{text-decoration:none;opacity:.86;padding:8px 0;transition:opacity .2s}
+.nav-links a:hover{opacity:1;text-decoration:underline}
+.lang{display:flex;border:1px solid var(--line-ink);border-radius:3px;overflow:hidden}
+.lang button{background:none;border:0;color:var(--on-ink-2);font:600 .8125rem/1 var(--body);letter-spacing:.06em;padding:0 11px;min-height:36px;min-width:44px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--on-ink);color:var(--ink)}
+.nav .btn{min-height:44px;padding:0 18px;font-size:.9375rem}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;color:var(--on-ink);background:var(--ink)}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 58%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,35,40,.55) 0%,rgba(10,35,40,0) 18%,rgba(10,35,40,0) 72%,rgba(10,35,40,.55) 100%),linear-gradient(90deg,rgba(10,35,40,.94) 0%,rgba(10,35,40,.8) 36%,rgba(10,35,40,.2) 62%,rgba(10,35,40,0) 78%)}
+.hero .wrap{position:relative;z-index:1;width:100%;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:clamp(28px,4vw,64px);align-items:end;padding-top:120px;padding-bottom:clamp(28px,5vh,56px)}
+.hero h1{font-size:clamp(3.3rem,7.4vw,6rem);line-height:.98;font-weight:600}
+.hero h1 em{font-style:normal;color:var(--sun)}
+.hero .lede{margin-top:22px;color:#D3E2DF;font-size:clamp(1.0625rem,1.4vw,1.25rem);max-width:none}
+.quick{margin-top:30px;display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;max-width:640px}
+.quick .field-label{color:#C9DBD8}
+.quick select{background-color:rgba(10,35,40,.82)}
+
+.board{background:rgba(15,47,54,.94);border:1px solid var(--line-ink);border-radius:4px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.board-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line-ink);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink-2)}
+.board-head .live{white-space:nowrap;display:flex;align-items:center;gap:8px;color:var(--on-ink)}
+.pulse{width:7px;height:7px;border-radius:50%;background:var(--sun)}
+.board dl{margin:0}
+.row{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line-ink)}
+.row dt{font-size:.9375rem;color:var(--on-ink-2)}
+.row dd{margin:0;text-align:right;font:400 1.75rem/1 var(--display);color:var(--on-ink)}
+.row dd small{font:500 .8125rem/1 var(--body);color:var(--on-ink-2);margin-left:6px}
+.board-foot{padding:11px 18px;font-size:.75rem;line-height:1.45;color:#8FAEAA}
+
+/* day */
+.day{padding:clamp(80px,11vw,140px) 0 clamp(80px,10vw,128px);border-top:1px solid var(--line-ink)}
+.day-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:48px}
+.rail{position:relative;margin-bottom:36px;padding-top:30px}
+.rail-track{position:relative;height:48px;border-top:1px solid var(--line-ink);border-bottom:1px solid var(--line-ink);background:repeating-linear-gradient(90deg,var(--line-ink) 0 1px,transparent 1px calc(100%/24))}
+.rail-night{position:absolute;top:0;bottom:0;background:rgba(0,0,0,.22)}
+.rail-pin{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--ink);border:2px solid var(--sea);pointer-events:none;transition:transform .3s var(--ease),background .3s}
+.rail-pin.on{background:var(--sun);border-color:var(--sun);transform:scale(1.35)}
+.rail-now{position:absolute;top:-30px;bottom:-8px;width:0;border-left:1.5px dashed var(--sun);pointer-events:none}
+.rail-now span{position:absolute;top:0;left:6px;white-space:nowrap;font-size:.75rem;font-weight:600;letter-spacing:.06em;color:var(--sun);text-transform:uppercase}
+.rail-hours{display:flex;justify-content:space-between;margin-top:8px;font-size:.75rem;color:var(--on-ink-2)}
+.rail input[type=range]{position:absolute;left:0;right:0;bottom:22px;width:100%;height:48px;margin:0;background:transparent;cursor:grab;-webkit-appearance:none;appearance:none;border:0;padding:0;min-height:0}
+.rail input[type=range]:active{cursor:grabbing}
+.rail input[type=range]:focus{background:transparent}
+.rail input[type=range]::-webkit-slider-runnable-track{height:48px;background:transparent}
+.rail input[type=range]::-moz-range-track{height:48px;background:transparent}
+.rail input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:4px;height:64px;margin-top:-8px;background:var(--on-ink);border-radius:2px}
+.rail input[type=range]::-moz-range-thumb{width:4px;height:64px;border:0;background:var(--on-ink);border-radius:2px}
+.rail input[type=range]:focus-visible{outline:none}
+.rail input[type=range]:focus-visible::-webkit-slider-thumb{background:var(--sun);width:6px}
+.rail input[type=range]:focus-visible::-moz-range-thumb{background:var(--sun)}
+.day-body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.stage{position:relative;aspect-ratio:4/3;border-radius:4px;clip-path:inset(0 round 4px);background:var(--ink-2);position:sticky;top:100px}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s var(--ease),transform 1.4s var(--ease);transform:scale(1.04)}
+.stage img.on{opacity:1;transform:scale(1)}
+.stage-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;display:flex;align-items:baseline;gap:16px;padding:60px 22px 18px;background:linear-gradient(0deg,rgba(10,35,40,.92),rgba(10,35,40,0))}
+.stage-cap .num{font-size:2.75rem;line-height:1;color:var(--sun)}
+.stage-cap span:last-child{font-size:1.0625rem;font-weight:500}
+.events{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-ink)}
+.events li{border-bottom:1px solid var(--line-ink)}
+.events button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:70px 1fr 22px;gap:14px;width:100%;padding:16px 4px;cursor:pointer;transition:background .25s}
+.events button:hover{background:rgba(255,255,255,.035)}
+.events button:focus-visible{outline:2px solid var(--sun);outline-offset:-2px}
+.events .t{font:400 1.5rem/1.1 var(--display);color:var(--on-ink-2);transition:color .25s}
+.events b{display:block;font-weight:600;font-size:1.0625rem;line-height:1.35}
+.events p{font-size:.9375rem;line-height:1.5;color:var(--on-ink-2);max-height:0;overflow:hidden;opacity:0;transition:max-height .45s var(--ease),opacity .35s,margin .45s var(--ease)}
+.events li.on .t{color:var(--sun)}
+.events li.on p{max-height:7em;opacity:1;margin-top:6px}
+.events .ic{margin-top:4px}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:20px;font-size:.8125rem;color:var(--on-ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+
+/* villa */
+.villa{padding:clamp(88px,11vw,150px) 0}
+.villa-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:end}
+.facts{display:grid;grid-template-columns:repeat(5,1fr);margin:56px 0 28px;border-top:1.5px solid var(--text);border-bottom:1px solid var(--line)}
+.facts div{padding:18px 18px 16px 0}
+.facts div+div{padding-left:18px;border-left:1px solid var(--line)}
+.facts .num{display:block;font-size:clamp(2.6rem,4.4vw,3.75rem);line-height:1;font-weight:400}
+.facts span:last-child{font-size:.9375rem;color:var(--text-2)}
+.src{font-size:.8125rem;color:var(--text-2);margin-bottom:40px}
+.mosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:28px 20px}
+.mosaic figure{margin:0;grid-column:span 4}
+.mosaic .w8{grid-column:span 8;grid-row:span 2}
+.mosaic .w6{grid-column:span 6}
+.mosaic .ph{overflow:hidden;border-radius:3px;background:var(--salt-2);aspect-ratio:3/2}
+.mosaic .w8 .ph{aspect-ratio:auto;height:calc(100% - 74px);min-height:420px}
+.mosaic img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.mosaic figure:hover img{transform:scale(1.035)}
+.mosaic figcaption{padding-top:12px;border-top:0}
+.mosaic figcaption b{display:block;font-weight:600;font-size:1rem}
+.care{display:flex;gap:8px;align-items:flex-start;margin-top:3px;font-size:.875rem;line-height:1.45;color:var(--text-2)}
+.care .ic{color:#1F8C79;margin-top:1px}
+
+/* retreats */
+.retreats{padding:clamp(88px,11vw,150px) 0;background:var(--salt-2)}
+.rt-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:end}
+.rt-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,56px);margin-top:56px;align-items:start}
+.rt-photo{margin:0;position:sticky;top:100px}
+.rt-photo .ph{aspect-ratio:4/5;overflow:hidden;border-radius:3px;background:var(--salt)}
+.rt-photo img{width:100%;height:100%;object-fit:cover}
+.rt-photo figcaption{padding-top:12px}
+.rt-menu{display:grid;grid-template-columns:1fr 1fr;gap:44px 32px}
+.rt-group h3{font-size:1.375rem;padding-bottom:12px;border-bottom:1.5px solid var(--text)}
+.rt-group ul{list-style:none;margin:0;padding:0}
+.rt-group li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-weight:500;line-height:1.4}
+.rt-group li span{color:var(--text-2);font-weight:400;font-size:.875rem;text-align:right;white-space:nowrap}
+.rt-day{margin-top:clamp(64px,8vw,96px)}
+.rt-day-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:16px;border-bottom:1.5px solid var(--text)}
+.rt-day-head h3{font-size:1.75rem}
+.rt-day ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(8,1fr)}
+.rt-day li{padding:18px 14px 18px 0;border-bottom:1px solid var(--line)}
+.rt-day li+li{padding-left:14px;border-left:1px solid var(--line)}
+.rt-day .num{display:block;font-size:1.75rem;line-height:1}
+.rt-day b{display:block;margin-top:10px;font-size:.9375rem;font-weight:600;line-height:1.35}
+.rt-day li.sun .num{color:var(--sun-deep)}
+.rt-plan{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,96px);margin-top:clamp(72px,9vw,120px);align-items:start}
+.rt-plan h2{font-size:clamp(2.2rem,4vw,3.25rem)}
+.rt-plan .points{margin-top:28px}
+form.rt-form{background:var(--ink-2);color:var(--on-ink)}
+.eval form,.rt-form{color-scheme:dark}
+
+/* services */
+.services{padding:clamp(88px,11vw,150px) 0}
+.svc-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:end;margin-bottom:52px}
+.svc{width:100%;border-collapse:collapse;font-size:.9875rem}
+.svc th,.svc td{text-align:left;vertical-align:top;padding:15px 16px 15px 0;border-bottom:1px solid var(--line-ink)}
+.svc thead th{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink-2);border-bottom:1.5px solid var(--on-ink)}
+.svc tbody th[scope=rowgroup]{font:600 1.375rem/1 var(--display);text-transform:uppercase;letter-spacing:.02em;color:var(--on-ink);padding-top:34px;border-bottom:1px solid var(--line-ink)}
+.svc td:first-child{font-weight:600;width:34%}
+.svc td:nth-child(2){width:20%;color:var(--on-ink);font-family:var(--display);font-size:1.1875rem;letter-spacing:.01em}
+.svc td:last-child{color:var(--on-ink-2)}
+.svc tbody tr:not(.grp):hover td{background:rgba(255,255,255,.025)}
+
+/* report */
+.report{padding:clamp(88px,11vw,150px) 0}
+.report .wrap{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,96px);align-items:start}
+.points{list-style:none;padding:0;margin:32px 0 0;border-top:1px solid var(--line)}
+.points li{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.points .ic{color:#1F8C79;margin-top:3px}
+.stmt{background:var(--paper);border-radius:4px;box-shadow:0 1px 2px rgba(11,35,40,.06),0 24px 60px -28px rgba(11,35,40,.35);padding:clamp(22px,3vw,36px)}
+.stmt-head{flex-wrap:wrap;display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding-bottom:18px;border-bottom:1.5px solid var(--text)}
+.stmt-head h3{font-size:1.75rem}
+.tag{display:inline-block;padding:5px 9px;border-radius:2px;background:var(--salt-2);color:var(--text);font-size:.6875rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.cal{display:grid;grid-template-columns:repeat(31,1fr);gap:3px;margin:22px 0 10px}
+.cal i{display:block;aspect-ratio:1/2.4;border-radius:2px;border:1px solid var(--line)}
+.cal i.b{background:var(--ink);border-color:var(--ink)}
+.cal i.o{background:repeating-linear-gradient(135deg,var(--text-2) 0 1.5px,transparent 1.5px 5px);border-color:var(--text-2)}
+.cal-legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8125rem;color:var(--text-2);margin-bottom:22px}
+.cal-legend span{display:inline-flex;align-items:center;gap:7px}
+.cal-legend i{width:12px;height:12px;border-radius:2px;border:1px solid var(--line)}
+.cal-legend i.b{background:var(--ink);border-color:var(--ink)}
+.cal-legend i.o{background:repeating-linear-gradient(135deg,var(--text-2) 0 1.5px,transparent 1.5px 4px);border-color:var(--text-2)}
+.ledger{width:100%;border-collapse:collapse;font-size:.9875rem}
+.ledger td{padding:11px 0;border-bottom:1px solid var(--line)}
+.ledger td:last-child{text-align:right;font-family:var(--display);font-size:1.25rem}
+.ledger tr.total td{border-bottom:0;border-top:1.5px solid var(--text);padding-top:16px;font-weight:600}
+.ledger tr.total td:last-child{font-size:2rem;font-weight:600}
+.ledger .neg{color:var(--text-2)}
+.stmt-note{margin-top:16px;font-size:.8125rem;color:var(--text-2)}
+
+/* process + faq */
+.start{padding:clamp(88px,10vw,140px) 0;background:var(--salt-2)}
+.steps{margin:56px 0 0;padding:0;border-top:1.5px solid var(--text)}
+.steps li{list-style:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr) 24px;gap:24px;align-items:baseline;padding:24px 0;border-bottom:1px solid var(--line)}
+.steps h3{font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400}
+.steps p{color:var(--text-2);max-width:60ch}
+.steps .ic{color:var(--text-2);align-self:center}
+.faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px);margin-top:clamp(80px,10vw,128px)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq details:first-of-type{border-top:1.5px solid var(--text)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:20px 0;font-weight:600;font-size:1.0625rem;cursor:pointer}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .ic{transition:transform .3s var(--ease);color:var(--text-2)}
+.faq details[open] summary .ic{transform:rotate(45deg)}
+.faq details p{padding:0 0 22px;color:var(--text-2);max-width:62ch}
+
+/* eval */
+.eval{position:relative;padding:clamp(96px,12vw,160px) 0}
+.eval .wrap{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,96px);align-items:start}
+.eval form,.rt-form{background:rgba(15,47,54,.92);border:1px solid var(--line-ink);border-radius:4px;padding:clamp(22px,3vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+.eval form .full,.rt-form .full{grid-column:1/-1}
+.eval fieldset,.rt-form fieldset{border:0;padding:0;margin:0}
+.eval legend,.rt-form legend{padding:0}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg label{position:relative}
+.seg input{position:absolute;opacity:0;width:1px;height:1px;min-height:0}
+.seg span{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line-ink);border-radius:3px;cursor:pointer;font-weight:500;font-size:.9375rem;transition:all .2s}
+.seg input:checked+span{background:var(--on-ink);color:var(--ink);border-color:var(--on-ink)}
+.seg input:focus-visible+span{outline:2px solid var(--sun);outline-offset:2px}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:12px}
+.form-foot small{color:var(--on-ink-2);font-size:.8125rem}
+.done{grid-column:1/-1;display:none;padding:12px 0}
+.done h3{font-size:2.25rem;margin:10px 0}
+.done p{color:var(--on-ink-2)}
+form.sent>*:not(.done){display:none}
+form.sent .done{display:block}
+.eval-points{margin-top:32px;display:grid;gap:14px}
+.eval-points div{display:flex;gap:12px;color:var(--on-ink-2)}
+.eval-points .ic{color:var(--sea);margin-top:3px}
+
+footer{padding:56px 0 40px;border-top:1px solid var(--line-ink);font-size:.875rem;color:var(--on-ink-2)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:flex-end}
+footer .brand{color:var(--on-ink)}
+
+/* motion: one authored moment on the board */
+@media (prefers-reduced-motion:no-preference){
+  .board .row{animation:tick .9s var(--ease) both}
+  .board .row:nth-child(2){animation-delay:.08s}.board .row:nth-child(3){animation-delay:.16s}
+  .board .row:nth-child(4){animation-delay:.24s}.board .row:nth-child(5){animation-delay:.32s}
+  @keyframes tick{from{opacity:.001;transform:translateY(8px);filter:blur(4px)}}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+/* responsive */
+@media (max-width:1080px){
+  .nav-links{display:none}
+  .lang{margin-left:auto}
+  .hero .wrap{grid-template-columns:1fr}
+  .board{max-width:560px}
+  .day-head,.villa-head,.svc-head{grid-template-columns:1fr;gap:20px}
+  .day-body{grid-template-columns:1fr}
+  .stage{position:relative;top:0}
+  .report .wrap,.eval .wrap,.faq,.rt-head,.rt-body,.rt-plan{grid-template-columns:1fr}
+  .rt-head{gap:20px}
+  .rt-photo{position:relative;top:0}
+  .rt-photo .ph{aspect-ratio:16/10}
+  .rt-day ol{grid-template-columns:repeat(4,1fr)}
+  .rt-day li:nth-child(5){padding-left:0;border-left:0}
+  .facts{grid-template-columns:repeat(3,1fr)}
+  .facts div:nth-child(4){padding-left:0;border-left:0}
+  .facts div:nth-child(n+4){border-top:1px solid var(--line)}
+}
+@media (max-width:720px){
+  body{font-size:1rem}
+  .nav .wrap{height:64px;gap:12px}
+  .nav .btn{display:none}
+  .brand{font-size:1.35rem}
+  .hero h1{font-size:clamp(2.9rem,13.5vw,4rem)}
+  .hero::after{background:linear-gradient(180deg,rgba(10,35,40,.6) 0%,rgba(10,35,40,.15) 14%,rgba(10,35,40,.82) 34%,rgba(10,35,40,.96) 52%,var(--ink) 100%)}
+  .hero-img{height:62%;object-position:60% 40%}
+  .quick{grid-template-columns:1fr 1fr}
+  .quick .btn{grid-column:1/-1}
+  .row dd{font-size:1.5rem}
+  .rail-hours span:nth-child(even){visibility:hidden}
+  .events button{grid-template-columns:58px 1fr 22px}
+  .mosaic{grid-template-columns:1fr;gap:28px}
+  .mosaic figure,.mosaic .w8,.mosaic .w6{grid-column:auto;grid-row:auto}
+  .mosaic .w8 .ph{height:auto;min-height:0;aspect-ratio:4/3}
+  .facts{grid-template-columns:repeat(2,1fr)}
+  .facts div{padding:16px 12px 14px 0!important;border-left:0!important;border-top:1px solid var(--line)}
+  .facts div:nth-child(even){padding-left:14px!important;border-left:1px solid var(--line)!important}
+  .facts div:first-child,.facts div:nth-child(2){border-top:0}
+  .facts div:last-child{grid-column:1/-1}
+  .svc thead{display:none}
+  .svc,.svc tbody,.svc tr,.svc td,.svc th{display:block;width:auto!important}
+  .svc tr:not(.grp){padding:14px 0;border-bottom:1px solid var(--line-ink)}
+  .svc td{border:0;padding:2px 0}
+  .svc td:nth-child(2){font-size:1.0625rem;color:var(--on-ink)}
+  .svc tbody th[scope=rowgroup]{padding-top:28px}
+  .steps li{grid-template-columns:1fr 24px;gap:8px 16px}
+  .steps p{grid-column:1/-1;grid-row:2}
+  .eval form,.rt-form{grid-template-columns:1fr}
+  .rt-menu{grid-template-columns:1fr;gap:36px}
+  .rt-group li span{white-space:normal}
+  .rt-day ol{grid-template-columns:1fr 1fr}
+  .rt-day li,.rt-day li+li{padding:16px 12px 16px 0;border-left:0}
+  .rt-day li:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
+  .cal{gap:2px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M7.8 12.3l2.8 2.8 5.6-6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-now" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2"/><path d="M12 2.8a9.2 9.2 0 010 18.4z" fill="currentColor"/></symbol>
+  <symbol id="i-sched" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.2" stroke-dasharray="2.6 2.8"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 17h18M6.5 17a5.5 5.5 0 0111 0M12 6.5V8.5M5.6 9.6l1.3 1.3M18.4 9.6l-1.3 1.3M4 21h16"/></symbol>
+  <symbol id="i-pool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M2.5 15c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 3-1.5M2.5 19.5c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5 2-1.5 3-1.5M8 12V5.5a2 2 0 014 0M16 12V5.5a2 2 0 00-4 0M8 8.5h8"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="8" cy="15" r="4.5"/><path d="M11.2 11.8L20 3M16.5 6.5l2.5 2.5M14 9l2 2"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.7l-5.4 3 1.2-6-4.5-4.2 6.1-.7z"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 18.5V6M3 14h18v4.5M21 14v-2.5a3 3 0 00-3-3h-7V14M6.8 11.2a1.6 1.6 0 100-.01"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 4.5v15M4.5 12h15"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 30 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1.5 6c3.4 0 3.4-4 6.8-4s3.4 4 6.8 4 3.4-4 6.8-4 3.4 4 6.6 4M1.5 13.5h27"/></symbol>
+</svg>
+
+<a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Pleamar, inicio"><svg aria-hidden="true"><use href="#i-wave"/></svg>PLEAMAR</a>
+    <nav class="nav-links" aria-label="Principal">
+      <a href="#dia" data-i18n="nav1">Un día de cuidado</a>
+      <a href="#villa" data-i18n="nav2">La villa</a>
+      <a href="#retreats" data-i18n="nav6">Retreats</a>
+      <a href="#servicios" data-i18n="nav3">Servicios</a>
+      <a href="#reportes" data-i18n="nav4">Reportes</a>
+      <a href="#preguntas" data-i18n="nav5">Preguntas</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn" href="#evaluar" data-i18n="navcta">Evaluar mi propiedad</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top" aria-labelledby="h1">
+  <img class="hero-img" src="img/67.webp" alt="Piscina de nado infinita frente a una villa contemporánea de tres niveles en Tamarindo" width="2400" height="1602" fetchpriority="high" data-i18n-alt="heroalt">
+  <div class="wrap">
+    <div>
+      <h1 id="h1" data-i18n="h1">Tu villa, impecable. <em>Todos los días.</em></h1>
+      <p class="lede" data-i18n="herolede">Huéspedes, limpieza, mantenimiento y dinero. Tú solo lees el parte.</p>
+      <form class="quick" id="quick" aria-label="Evaluación rápida">
+        <label><span class="field-label" data-i18n="q1">¿Dónde está?</span>
+          <select name="loc" id="q-loc">
+            <option value="Tamarindo">Tamarindo</option>
+            <option value="Playa Langosta">Playa Langosta</option>
+            <option value="Playa Grande">Playa Grande</option>
+            <option value="Flamingo">Flamingo</option>
+            <option value="Conchal">Conchal</option>
+            <option value="Otro" data-i18n="other">Otro lugar</option>
+          </select></label>
+        <label><span class="field-label" data-i18n="q2">Habitaciones</span>
+          <select name="beds" id="q-beds">
+            <option>2</option><option>3</option><option selected>4</option><option>5</option><option value="6+">6+</option>
+          </select></label>
+        <button class="btn" type="submit"><span data-i18n="qbtn">Evaluar mi propiedad</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+      </form>
+    </div>
+
+    <aside class="board" aria-labelledby="board-t">
+      <div class="board-head">
+        <span id="board-t" data-i18n="boardt">Parte de hoy · Villa Tamarindo</span>
+        <span class="live"><i class="pulse" aria-hidden="true"></i><span id="clock">--:--</span></span>
+      </div>
+      <dl>
+        <div class="row"><svg class="ic mark-now" aria-hidden="true"><use href="#i-sun"/></svg><dt data-i18n="b1">Atardecer</dt><dd id="sunset">17:30</dd></div>
+        <div class="row"><svg class="ic mark-done" aria-hidden="true"><use href="#i-done"/></svg><dt data-i18n="b2">Piscina revisada</dt><dd>06:40<small data-i18n="b2s">pH 7.4</small></dd></div>
+        <div class="row"><svg class="ic mark-now" aria-hidden="true"><use href="#i-now"/></svg><dt data-i18n="b3">Limpieza de salida</dt><dd><span data-i18n="b3v">En curso</span></dd></div>
+        <div class="row"><svg class="ic mark-sched" aria-hidden="true"><use href="#i-key"/></svg><dt data-i18n="b4">Llegan 12 huéspedes</dt><dd>16:00</dd></div>
+        <div class="row"><svg class="ic" style="color:var(--sun)" aria-hidden="true"><use href="#i-star"/></svg><dt data-i18n="b5">Calificación en Airbnb</dt><dd>5.0<small data-i18n="b5s">36 reseñas</small></dd></div>
+      </dl>
+      <p class="board-foot" data-i18n="boardfoot">Atardecer calculado en vivo para Tamarindo. Calificación real de Airbnb. El resto es un parte de ejemplo.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="ink day" id="dia" aria-labelledby="dia-t">
+  <div class="wrap">
+    <div class="day-head">
+      <h2 id="dia-t" data-i18n="dayt">Un día bajo nuestro cuidado</h2>
+      <p class="lede" data-i18n="daylede">Arrastra la línea del día. Cada hora tiene alguien responsable y queda registrada en tu portal. La línea punteada es la hora actual en Costa Rica.</p>
+    </div>
+
+    <div class="rail" id="rail">
+      <div class="rail-track" id="track">
+        <div class="rail-night" style="left:0;width:23%" aria-hidden="true"></div>
+        <div class="rail-night" style="right:0;width:24%" aria-hidden="true"></div>
+      </div>
+      <div class="rail-now" id="now" aria-hidden="true"><span id="now-l">Ahora</span></div>
+      <label class="sr" for="hour" data-i18n="slider">Hora del día</label>
+      <input type="range" id="hour" min="0" max="1439" step="5" value="400">
+      <div class="rail-hours" aria-hidden="true"><span>00</span><span>03</span><span>06</span><span>09</span><span>12</span><span>15</span><span>18</span><span>21</span><span>24</span></div>
+    </div>
+
+    <div class="day-body">
+      <div class="stage" id="stage" aria-live="polite">
+        <div class="stage-cap"><span class="num" id="cap-t">06:40</span><span id="cap-l"></span></div>
+      </div>
+      <div>
+        <ol class="events" id="events"></ol>
+        <div class="legend">
+          <span><svg class="ic mark-done" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="lg1">Hecho</span></span>
+          <span><svg class="ic mark-now" aria-hidden="true"><use href="#i-now"/></svg><span data-i18n="lg2">En curso</span></span>
+          <span><svg class="ic mark-sched" aria-hidden="true"><use href="#i-sched"/></svg><span data-i18n="lg3">Programado</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="villa" id="villa" aria-labelledby="villa-t">
+  <div class="wrap">
+    <div class="villa-head">
+      <h2 id="villa-t" data-i18n="villat">La prueba es la casa</h2>
+      <p class="lede" data-i18n="villalede">Villa con vista al Pacífico, rooftop y piscina de nado infinita, a pocos minutos caminando del centro de Tamarindo. Así se ve una casa que nunca se descuida, y lo que hacemos para que siga así.</p>
+    </div>
+    <div class="facts" role="list">
+      <div role="listitem"><span class="num">4</span><span data-i18n="f1">Habitaciones</span></div>
+      <div role="listitem"><span class="num">6</span><span data-i18n="f2">Camas</span></div>
+      <div role="listitem"><span class="num">4</span><span data-i18n="f3">Baños</span></div>
+      <div role="listitem"><span class="num">12</span><span data-i18n="f4">Huéspedes</span></div>
+      <div role="listitem"><span class="num">5.0<svg class="ic" style="color:var(--sun-deep);width:.5em;height:.5em;vertical-align:.5em;margin-left:4px" aria-hidden="true"><use href="#i-star"/></svg></span><span data-i18n="f5">36 reseñas en Airbnb</span></div>
+    </div>
+    <p class="src" data-i18n="src">Datos y fotos del anuncio público de la villa en Airbnb. Debajo de cada foto, su rutina de cuidado.</p>
+
+    <div class="mosaic">
+      <figure class="w8"><div class="ph"><img src="img/65.webp" alt="La villa completa con su piscina de nado infinita entre la vegetación" loading="lazy" width="1600" height="1039" data-i18n-alt="a1"></div>
+        <figcaption><b data-i18n="c1">La villa y su piscina de nado</b><span class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="k1">Química del agua medida cada mañana; bomba y filtros revisados cada semana.</span></span></figcaption></figure>
+      <figure><div class="ph"><img src="img/01.webp" alt="Sala de doble altura con ventanales hacia el atardecer" loading="lazy" width="1600" height="1068" data-i18n-alt="a2"></div>
+        <figcaption><b data-i18n="c2">Sala con vista al Pacífico</b><span class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="k2">Ventanales lavados en cada salida; aire acondicionado con filtros mensuales.</span></span></figcaption></figure>
+      <figure><div class="ph"><img src="img/10.webp" alt="Cocina gourmet con isla de madera y electrodomésticos de acero" loading="lazy" width="1600" height="1068" data-i18n-alt="a3"></div>
+        <figcaption><b data-i18n="c3">Cocina gourmet</b><span class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="k3">Inventario de menaje y electrodomésticos tras cada estadía.</span></span></figcaption></figure>
+      <figure><div class="ph"><img src="img/22.webp" alt="Suite principal con cama king frente al atardecer" loading="lazy" width="1600" height="1068" data-i18n-alt="a4"></div>
+        <figcaption><b data-i18n="c4">Suite principal</b><span class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="k4">Ropa de cama de calidad hotel, lavada fuera de la casa.</span></span></figcaption></figure>
+      <figure><div class="ph"><img src="img/46.webp" alt="Bañera exenta en baño de mármol blanco" loading="lazy" width="1600" height="1200" data-i18n-alt="a5"></div>
+        <figcaption><b data-i18n="c5">Baño principal</b><span class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="k5">Grifería, juntas y agua caliente revisadas en cada limpieza.</span></span></figcaption></figure>
+      <figure><div class="ph"><img src="img/63.webp" alt="Terraza en el rooftop con sala exterior y vista a la bahía" loading="lazy" width="1600" height="1068" data-i18n-alt="a6"></div>
+        <figcaption><b data-i18n="c6">Rooftop</b><span class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="k6">Muebles exteriores tratados contra el salitre cada trimestre.</span></span></figcaption></figure>
+      <figure class="w6"><div class="ph"><img src="img/69.webp" alt="La villa iluminada de noche con la piscina encendida" loading="lazy" width="2400" height="1186" data-i18n-alt="a7"></div>
+        <figcaption><b data-i18n="c7">De noche</b><span class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="k7">Iluminación, cerraduras con código y accesos verificados cada noche.</span></span></figcaption></figure>
+      <figure class="w6"><div class="ph"><img src="img/75.webp" alt="Vista aérea de Tamarindo al atardecer con el océano al fondo" loading="lazy" width="2400" height="1798" data-i18n-alt="a8"></div>
+        <figcaption><b data-i18n="c8">Tamarindo, desde arriba</b><span class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="k8">A pocos minutos caminando del centro, la playa y los restaurantes.</span></span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="retreats" id="retreats" aria-labelledby="rt-t">
+  <div class="wrap">
+    <div class="rt-head">
+      <h2 id="rt-t" data-i18n="rtt">Retreats de bienestar</h2>
+      <p class="lede" data-i18n="rtlede">La villa completa para tu grupo, hasta 12 personas, con un programa de bienestar armado a la medida. Tú eliges las prácticas; nosotros coordinamos facilitadores, comidas y traslados.</p>
+    </div>
+
+    <div class="rt-body">
+      <figure class="rt-photo">
+        <div class="ph"><img src="img/54.webp" alt="Cama colgante de madera en el balcón, frente a la vista de Tamarindo" loading="lazy" width="1600" height="901" data-i18n-alt="rta"></div>
+        <figcaption class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="rtcap">Limpieza diaria incluida durante toda la estadía.</span></figcaption>
+      </figure>
+      <div class="rt-menu">
+        <div class="rt-group"><h3 data-i18n="rg1">Cuerpo</h3><ul>
+          <li><b data-i18n="rs1">Yoga al amanecer y al atardecer</b><span data-i18n="rw1">Rooftop</span></li>
+          <li><b data-i18n="rs2">Masajes y tratamientos corporales</b><span data-i18n="rw2">En tu suite</span></li>
+          <li><b data-i18n="rs3">Breathwork e inmersión en frío</b><span data-i18n="rw3">Junto a la piscina</span></li>
+          <li><b data-i18n="rs4">Pilates y movilidad</b><span data-i18n="rw1">Rooftop</span></li>
+        </ul></div>
+        <div class="rt-group"><h3 data-i18n="rg2">Mente</h3><ul>
+          <li><b data-i18n="rs5">Meditación guiada</b><span data-i18n="rw1">Rooftop</span></li>
+          <li><b data-i18n="rs6">Sound healing con cuencos</b><span data-i18n="rw4">Sala</span></li>
+          <li><b data-i18n="rs7">Ceremonia de cacao</b><span data-i18n="rw5">Terraza</span></li>
+          <li><b data-i18n="rs8">Journaling y círculos de conversación</b><span data-i18n="rw4">Sala</span></li>
+        </ul></div>
+        <div class="rt-group"><h3 data-i18n="rg3">Alimentación</h3><ul>
+          <li><b data-i18n="rs9">Chef privado con menú saludable a la medida</b><span data-i18n="rw6">Cocina gourmet</span></li>
+          <li><b data-i18n="rs10">Jugos, bowls y desayunos de temporada</b><span data-i18n="rw7">Comedor</span></li>
+          <li><b data-i18n="rs11">Clase de cocina tica consciente</b><span data-i18n="rw6">Cocina gourmet</span></li>
+        </ul></div>
+        <div class="rt-group"><h3 data-i18n="rg4">Naturaleza y logística</h3><ul>
+          <li><b data-i18n="rs12">Caminata al amanecer por la playa</b><span data-i18n="rw8">Playa Tamarindo</span></li>
+          <li><b data-i18n="rs13">Surf suave para principiantes</b><span data-i18n="rw8">Playa Tamarindo</span></li>
+          <li><b data-i18n="rs14">Atardecer en catamarán</b><span data-i18n="rw9">Bahía de Tamarindo</span></li>
+          <li><b data-i18n="rs15">Traslados desde el aeropuerto de Liberia</b><span data-i18n="rw10">Ida y vuelta</span></li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="rt-day">
+      <div class="rt-day-head"><h3 data-i18n="rdt">Un día de retreat</h3><span class="tag" data-i18n="rdtag">Programa de ejemplo</span></div>
+      <ol>
+        <li><span class="num">06:00</span><b data-i18n="rd1">Yoga al amanecer</b></li>
+        <li><span class="num">08:00</span><b data-i18n="rd2">Desayuno del chef</b></li>
+        <li><span class="num">09:30</span><b data-i18n="rd3">Breathwork y baño frío</b></li>
+        <li><span class="num">11:00</span><b data-i18n="rd4">Playa o tiempo libre</b></li>
+        <li><span class="num">13:00</span><b data-i18n="rd5">Almuerzo de temporada</b></li>
+        <li><span class="num">15:30</span><b data-i18n="rd6">Masajes en la suite</b></li>
+        <li class="sun"><span class="num" id="rt-sun">17:30</span><b data-i18n="rd7">Meditación al atardecer</b></li>
+        <li><span class="num">20:00</span><b data-i18n="rd8">Cena y sound healing</b></li>
+      </ol>
+    </div>
+
+    <div class="rt-plan">
+      <div>
+        <h2 data-i18n="rpt">Planea tu retreat</h2>
+        <ul class="points">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="rp1">La villa completa y privada: 4 suites, rooftop y piscina de nado.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="rp2">Programa armado contigo antes de llegar.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="rp3">Un solo contacto para todo durante la estadía.</span></li>
+        </ul>
+      </div>
+      <form class="rt-form" id="retreat" novalidate>
+        <label><span class="field-label" data-i18n="fn">Nombre</span><input name="name" autocomplete="name" required aria-describedby="rerr-name"><span class="err" id="rerr-name" aria-live="polite"></span></label>
+        <label><span class="field-label" data-i18n="fe">Correo</span><input name="email" type="email" autocomplete="email" required aria-describedby="rerr-email"><span class="err" id="rerr-email" aria-live="polite"></span></label>
+        <label><span class="field-label" data-i18n="rfg">Tamaño del grupo</span>
+          <select name="group"><option value="4-6" data-i18n="rfg1">4 a 6 personas</option><option value="7-9" data-i18n="rfg2">7 a 9 personas</option><option value="10-12" selected data-i18n="rfg3">10 a 12 personas</option></select><span class="err"></span></label>
+        <label><span class="field-label" data-i18n="rfd">Mes aproximado</span><input name="month" type="month"><span class="err"></span></label>
+        <fieldset class="full"><legend class="field-label" data-i18n="rfi">¿Qué les interesa?</legend>
+          <div class="seg">
+            <label><input type="checkbox" name="int" value="yoga"><span data-i18n="ri1">Yoga</span></label>
+            <label><input type="checkbox" name="int" value="meditacion"><span data-i18n="ri2">Meditación</span></label>
+            <label><input type="checkbox" name="int" value="masajes"><span data-i18n="ri3">Masajes</span></label>
+            <label><input type="checkbox" name="int" value="breathwork"><span>Breathwork</span></label>
+            <label><input type="checkbox" name="int" value="sound"><span>Sound healing</span></label>
+            <label><input type="checkbox" name="int" value="cacao"><span data-i18n="ri4">Cacao</span></label>
+            <label><input type="checkbox" name="int" value="chef"><span data-i18n="ri5">Chef saludable</span></label>
+            <label><input type="checkbox" name="int" value="surf"><span>Surf</span></label>
+          </div><span class="err"></span></fieldset>
+        <label class="full"><span class="field-label" data-i18n="rfm">Cuéntanos de tu grupo (opcional)</span><textarea name="msg"></textarea></label>
+        <div class="form-foot full">
+          <button class="btn" type="submit"><span data-i18n="rfsend">Planear mi retreat</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <small data-i18n="fpriv">Solo usamos tus datos para responderte.</small>
+        </div>
+        <div class="done" role="status" tabindex="-1">
+          <svg class="ic mark-done" style="width:40px;height:40px" aria-hidden="true"><use href="#i-done"/></svg>
+          <h3 data-i18n="dt">Recibido</h3>
+          <p data-i18n="rdp">Gracias. Te escribiremos pronto con una propuesta de programa para tu grupo.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="ink services" id="servicios" aria-labelledby="svc-t">
+  <div class="wrap">
+    <div class="svc-head">
+      <h2 id="svc-t" data-i18n="svct">Todo, en una tabla</h2>
+      <p class="lede" data-i18n="svclede">Sin paquetes ni letra pequeña: esto es lo que hacemos, cada cuánto y qué ves tú.</p>
+    </div>
+    <table class="svc">
+      <caption class="sr" data-i18n="svccap">Servicios de administración, frecuencia y lo que ve el dueño</caption>
+      <thead><tr><th scope="col" data-i18n="th1">Servicio</th><th scope="col" data-i18n="th2">Frecuencia</th><th scope="col" data-i18n="th3">Lo que tú ves</th></tr></thead>
+      <tbody>
+        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g1">Huéspedes</th></tr>
+        <tr><td data-i18n="s1">Fotografía y anuncios en Airbnb, VRBO y reserva directa</td><td data-i18n="s1f">Al inicio y por temporada</td><td data-i18n="s1v">Enlaces a cada anuncio</td></tr>
+        <tr><td data-i18n="s2">Atención a huéspedes en español e inglés</td><td data-i18n="s2f">Durante cada estadía</td><td data-i18n="s2v">Historial completo de mensajes</td></tr>
+        <tr><td data-i18n="s3">Llegada con códigos y bienvenida</td><td data-i18n="s3f">Cada llegada</td><td data-i18n="s3v">Registro de accesos</td></tr>
+        <tr><td data-i18n="s4">Concierge: chef, tours, transporte</td><td data-i18n="s4f">Bajo pedido</td><td data-i18n="s4v">Reservas registradas en tu portal</td></tr>
+        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g2">La casa</th></tr>
+        <tr><td data-i18n="s5">Limpieza de salida con checklist por habitación</td><td data-i18n="s5f">Cada estadía</td><td data-i18n="s5v">Fotos de la casa lista</td></tr>
+        <tr><td data-i18n="s6">Piscina, jardín y terrazas</td><td data-i18n="s6f">Diario y semanal</td><td data-i18n="s6v">Parte con mediciones</td></tr>
+        <tr><td data-i18n="s7">Mantenimiento preventivo: A/C, bombas, cerraduras</td><td data-i18n="s7f">Mensual</td><td data-i18n="s7v">Bitácora con fotos y facturas</td></tr>
+        <tr><td data-i18n="s8">Emergencias y reparaciones</td><td data-i18n="s8f">En cuanto ocurren</td><td data-i18n="s8v">Aviso inmediato; tú apruebas sobre tu límite</td></tr>
+        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g3">Ingresos</th></tr>
+        <tr><td data-i18n="s9">Precio dinámico por temporada y eventos</td><td data-i18n="s9f">Diario</td><td data-i18n="s9v">Tarifa por noche en tu portal</td></tr>
+        <tr><td data-i18n="s10">Cobros, pagos a proveedores e impuestos locales</td><td data-i18n="s10f">Mensual</td><td data-i18n="s10v">Estado de cuenta detallado</td></tr>
+        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g4">Tú</th></tr>
+        <tr><td data-i18n="s11">Portal del dueño: calendario, reservas y gastos</td><td data-i18n="s11f">Siempre</td><td data-i18n="s11v">Todo, en tiempo real</td></tr>
+        <tr><td data-i18n="s12">Bloqueo de fechas para tu propio uso</td><td data-i18n="s12f">Cuando quieras</td><td data-i18n="s12v">Casa preparada a tu llegada</td></tr>
+        <tr><td data-i18n="s13">Revisión de resultados contigo</td><td data-i18n="s13f">Trimestral</td><td data-i18n="s13v">Llamada y plan de la temporada</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="report" id="reportes" aria-labelledby="rep-t">
+  <div class="wrap">
+    <div>
+      <h2 id="rep-t" data-i18n="rept">Sabes todo sin tener que preguntar</h2>
+      <p class="lede" style="margin-top:22px" data-i18n="replede">Cada mes recibes un estado de cuenta de una página. Noches, ingresos, gastos y lo que se hizo en la casa, con fotos y facturas.</p>
+      <ul class="points">
+        <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="p1">Calendario de ocupación con tus fechas bloqueadas.</span></li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="p2">Cada gasto con su factura; nada se cobra sin respaldo.</span></li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="p3">Depósito mensual a tu cuenta.</span></li>
+      </ul>
+    </div>
+    <article class="stmt" aria-labelledby="stmt-t">
+      <div class="stmt-head">
+        <div><h3 id="stmt-t" data-i18n="stmtt">Estado de cuenta · Marzo</h3><p style="color:var(--text-2);font-size:.9375rem;margin-top:6px">Villa Tamarindo</p></div>
+        <span class="tag" data-i18n="tag">Ejemplo ilustrativo</span>
+      </div>
+      <div class="cal" id="cal" role="img" aria-label="Marzo: 24 noches reservadas, 3 noches de uso del dueño, 4 noches libres" data-i18n-aria="calaria"></div>
+      <div class="cal-legend">
+        <span><i class="b"></i><span data-i18n="l1">Reservada · 24</span></span>
+        <span><i class="o"></i><span data-i18n="l2">Uso del dueño · 3</span></span>
+        <span><i></i><span data-i18n="l3">Libre · 4</span></span>
+      </div>
+      <table class="ledger">
+        <caption class="sr" data-i18n="ledcap">Resumen del mes de ejemplo</caption>
+        <tbody>
+          <tr><td data-i18n="r1">Ingresos por reservas</td><td>$21,600</td></tr>
+          <tr><td data-i18n="r2">Comisión de administración</td><td class="neg">−$4,320</td></tr>
+          <tr><td data-i18n="r3">Limpiezas y lavandería</td><td class="neg">−$1,150</td></tr>
+          <tr><td data-i18n="r4">Mantenimiento (filtros A/C, bomba)</td><td class="neg">−$380</td></tr>
+          <tr class="total"><td data-i18n="r5">Depósito al dueño</td><td>$15,750</td></tr>
+        </tbody>
+      </table>
+      <p class="stmt-note" data-i18n="stmtnote">Cifras inventadas para mostrar el formato. Tu estimado real sale de la evaluación de tu propiedad.</p>
+    </article>
+  </div>
+</section>
+
+<section class="start" id="preguntas" aria-labelledby="start-t">
+  <div class="wrap">
+    <h2 id="start-t" data-i18n="startt">Cómo empezamos</h2>
+    <ol class="steps">
+      <li><h3 data-i18n="st1t">Evaluación</h3><p data-i18n="st1p">Visitamos la casa (o hacemos videollamada), revisamos su estado y te damos un estimado de ingresos por temporada.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
+      <li><h3 data-i18n="st2t">Preparación</h3><p data-i18n="st2p">Puesta a punto, inventario, fotografía profesional y anuncios. Tú apruebas todo antes de publicar.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
+      <li><h3 data-i18n="st3t">En línea</h3><p data-i18n="st3p">Tu villa recibe reservas y tú empiezas a recibir el parte. Nosotros nos encargamos del resto.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
+    </ol>
+
+    <div class="faq">
+      <h2 data-i18n="faqt" style="font-size:clamp(2.2rem,4vw,3.25rem)">Preguntas de dueños</h2>
+      <div>
+        <details><summary><span data-i18n="fq1">¿Cuánto cobran?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa1">Depende del tamaño y los servicios de tu casa. Lo verás por escrito en la evaluación, antes de firmar nada.</p></details>
+        <details><summary><span data-i18n="fq2">¿Puedo seguir usando mi casa?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa2">Sí. Bloqueas tus fechas desde el portal y la casa estará limpia y lista cuando llegues.</p></details>
+        <details><summary><span data-i18n="fq3">¿Qué pasa si algo se daña?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa3">Lo resolvemos de inmediato y te avisamos con fotos. Tú defines un monto límite: cualquier reparación por encima de él necesita tu aprobación.</p></details>
+        <details><summary><span data-i18n="fq4">¿En qué zonas trabajan?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa4">Escríbenos con la ubicación de tu casa y te confirmamos si la cubrimos.</p></details>
+        <details><summary><span data-i18n="fq5">¿Cómo veo lo que pasa en mi casa?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa5">En el portal del dueño: calendario, reservas, mensajes, gastos y bitácora de mantenimiento, en tiempo real. Además, el estado de cuenta mensual.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ink eval" id="evaluar" aria-labelledby="eval-t">
+  <div class="wrap">
+    <div>
+      <h2 id="eval-t" data-i18n="evalt">Evaluemos tu villa</h2>
+      <p class="lede" style="margin-top:22px" data-i18n="evallede">Cuéntanos de tu casa y te respondemos con los siguientes pasos.</p>
+      <div class="eval-points">
+        <div><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="e1">Recorrido por tu casa, en persona o por video.</span></div>
+        <div><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="e2">Estimado de ingresos por temporada.</span></div>
+        <div><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="e3">Te atendemos en español o inglés.</span></div>
+      </div>
+    </div>
+    <form id="eval" novalidate>
+      <label><span class="field-label" data-i18n="fn">Nombre</span><input name="name" autocomplete="name" required aria-describedby="err-name"><span class="err" id="err-name" aria-live="polite"></span></label>
+      <label><span class="field-label" data-i18n="fe">Correo</span><input name="email" type="email" autocomplete="email" required aria-describedby="err-email"><span class="err" id="err-email" aria-live="polite"></span></label>
+      <label><span class="field-label" data-i18n="fw">WhatsApp (opcional)</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel"><span class="err"></span></label>
+      <label><span class="field-label" data-i18n="q1">¿Dónde está?</span>
+        <select name="loc" id="f-loc">
+          <option value="Tamarindo">Tamarindo</option><option value="Playa Langosta">Playa Langosta</option><option value="Playa Grande">Playa Grande</option><option value="Flamingo">Flamingo</option><option value="Conchal">Conchal</option><option value="Otro" data-i18n="other">Otro lugar</option>
+        </select><span class="err"></span></label>
+      <label><span class="field-label" data-i18n="q2">Habitaciones</span>
+        <select name="beds" id="f-beds"><option>2</option><option>3</option><option selected>4</option><option>5</option><option value="6+">6+</option></select><span class="err"></span></label>
+      <fieldset><legend class="field-label" data-i18n="fr">¿Ya se renta?</legend>
+        <div class="seg">
+          <label><input type="radio" name="rented" value="si" checked><span data-i18n="fr1">Sí</span></label>
+          <label><input type="radio" name="rented" value="no"><span data-i18n="fr2">Todavía no</span></label>
+          <label><input type="radio" name="rented" value="obra"><span data-i18n="fr3">En construcción</span></label>
+        </div><span class="err"></span></fieldset>
+      <label class="full"><span class="field-label" data-i18n="fm">Algo que debamos saber (opcional)</span><textarea name="msg"></textarea></label>
+      <div class="form-foot full">
+        <button class="btn" type="submit"><span data-i18n="fsend">Solicitar evaluación</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <small data-i18n="fpriv">Solo usamos tus datos para responderte.</small>
+      </div>
+      <div class="done" role="status" tabindex="-1" id="done">
+        <svg class="ic mark-done" style="width:40px;height:40px" aria-hidden="true"><use href="#i-done"/></svg>
+        <h3 data-i18n="dt">Recibido</h3>
+        <p data-i18n="dp">Gracias. Te escribiremos pronto para coordinar la evaluación de tu villa.</p>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="ink">
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top"><svg aria-hidden="true"><use href="#i-wave"/></svg>PLEAMAR</a>
+      <p style="margin-top:12px" data-i18n="foot1">Administración de villas · Tamarindo, Guanacaste, Costa Rica</p>
+    </div>
+    <p><span data-i18n="foot2">[Correo y WhatsApp por confirmar]</span><br>© <span id="yr">2026</span> Pleamar</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const TZ = 'America/Costa_Rica', LAT = 10.2993, LON = -85.8371;
+
+  /* ---------- i18n: Spanish lives in the HTML, English here ---------- */
+  const EN = {
+    skip:'Skip to content', nav1:'A day of care', nav2:'The villa', nav3:'Services', nav4:'Reports', nav5:'Questions', nav6:'Retreats', navcta:'Evaluate my property',
+    heroalt:'Infinity lap pool in front of a three-level contemporary villa in Tamarindo',
+    h1:'Your villa, immaculate. <em>Every single day.</em>',
+    herolede:'Guests, housekeeping, maintenance and money. You just read the report.',
+    q1:'Where is it?', q2:'Bedrooms', other:'Somewhere else', qbtn:'Evaluate my property',
+    boardt:'Today’s report · Villa Tamarindo', b1:'Sunset', b2:'Pool checked', b2s:'pH 7.4', b3:'Checkout cleaning', b3v:'In progress', b4:'12 guests arriving', b5:'Airbnb rating', b5s:'36 reviews',
+    boardfoot:'Sunset calculated live for Tamarindo. Rating is real, from Airbnb. Everything else is a sample report.',
+    dayt:'A day in our care', daylede:'Drag the day line. Every hour has someone accountable, and it’s logged in your portal. The dashed line is the current time in Costa Rica.',
+    slider:'Time of day', lg1:'Done', lg2:'In progress', lg3:'Scheduled',
+    villat:'The proof is the house', villalede:'An ocean-view villa with a rooftop and an infinity lap pool, a short walk from downtown Tamarindo. This is what a house that is never neglected looks like, and what we do to keep it that way.',
+    f1:'Bedrooms', f2:'Beds', f3:'Bathrooms', f4:'Guests', f5:'36 reviews on Airbnb',
+    src:'Facts and photos from the villa’s public Airbnb listing. Under each photo, its care routine.',
+    a1:'The whole villa with its infinity lap pool among the greenery', a2:'Double-height living room with windows facing the sunset', a3:'Gourmet kitchen with wooden island and steel appliances', a4:'Primary suite with king bed facing the sunset', a5:'Freestanding tub in a white marble bathroom', a6:'Rooftop terrace with outdoor lounge and bay view', a7:'The villa lit up at night with the pool glowing', a8:'Aerial view of Tamarindo at sunset with the ocean beyond',
+    c1:'The villa and its lap pool', k1:'Water chemistry tested every morning; pump and filters checked weekly.',
+    c2:'Living room over the Pacific', k2:'Windows washed at every checkout; A/C filters replaced monthly.',
+    c3:'Gourmet kitchen', k3:'Kitchenware and appliance inventory after every stay.',
+    c4:'Primary suite', k4:'Hotel-grade linens, laundered off site.',
+    c5:'Primary bathroom', k5:'Fixtures, grout and hot water checked at every cleaning.',
+    c6:'Rooftop', k6:'Outdoor furniture treated against salt air every quarter.',
+    c7:'At night', k7:'Lighting, keypad locks and entries verified every night.',
+    c8:'Tamarindo from above', k8:'A short walk to town, the beach and restaurants.',
+    rtt:'Wellness retreats', rtlede:'The whole villa for your group, up to 12 people, with a wellness program built around you. You choose the practices; we coordinate facilitators, meals and transfers.',
+    rta:'Wooden hanging bed on the balcony facing the Tamarindo view', rtcap:'Daily housekeeping included throughout your stay.',
+    rg1:'Body', rs1:'Sunrise and sunset yoga', rw1:'Rooftop', rs2:'Massage and body treatments', rw2:'In your suite', rs3:'Breathwork and cold plunge', rw3:'By the pool', rs4:'Pilates and mobility',
+    rg2:'Mind', rs5:'Guided meditation', rs6:'Sound healing with singing bowls', rw4:'Living room', rs7:'Cacao ceremony', rw5:'Terrace', rs8:'Journaling and sharing circles',
+    rg3:'Nourishment', rs9:'Private chef with a custom healthy menu', rw6:'Gourmet kitchen', rs10:'Juices, bowls and seasonal breakfasts', rw7:'Dining room', rs11:'Mindful Costa Rican cooking class',
+    rg4:'Nature & logistics', rs12:'Sunrise beach walk', rw8:'Tamarindo Beach', rs13:'Gentle surf for beginners', rs14:'Sunset catamaran', rw9:'Tamarindo Bay', rs15:'Liberia airport transfers', rw10:'Round trip',
+    rdt:'A retreat day', rdtag:'Sample program', rd1:'Sunrise yoga', rd2:'Chef’s breakfast', rd3:'Breathwork and cold plunge', rd4:'Beach or free time', rd5:'Seasonal lunch', rd6:'Massage in your suite', rd7:'Sunset meditation', rd8:'Dinner and sound healing',
+    rpt:'Plan your retreat', rp1:'The whole private villa: 4 suites, rooftop and lap pool.', rp2:'A program built with you before you arrive.', rp3:'One contact for everything during your stay.',
+    rfg:'Group size', rfg1:'4 to 6 people', rfg2:'7 to 9 people', rfg3:'10 to 12 people', rfd:'Approximate month', rfi:'What interests you?', ri1:'Yoga', ri2:'Meditation', ri3:'Massage', ri4:'Cacao', ri5:'Healthy chef',
+    rfm:'Tell us about your group (optional)', rfsend:'Plan my retreat', rdp:'Thank you. We’ll be in touch soon with a program proposal for your group.',
+    svct:'Everything, in one table', svclede:'No packages, no fine print: what we do, how often, and what you see.', svccap:'Management services, frequency, and what the owner sees',
+    th1:'Service', th2:'Frequency', th3:'What you see',
+    g1:'Guests', s1:'Photography and listings on Airbnb, VRBO and direct booking', s1f:'At launch and each season', s1v:'Links to every listing',
+    s2:'Guest support in English and Spanish', s2f:'Throughout every stay', s2v:'Full message history', s3:'Keypad check-in and welcome', s3f:'Every arrival', s3v:'Entry log',
+    s4:'Concierge: private chef, tours, transport', s4f:'On request', s4v:'Bookings logged in your portal',
+    g2:'The house', s5:'Checkout cleaning with a room-by-room checklist', s5f:'Every stay', s5v:'Photos of the ready house',
+    s6:'Pool, garden and terraces', s6f:'Daily and weekly', s6v:'Report with readings', s7:'Preventive maintenance: A/C, pumps, locks', s7f:'Monthly', s7v:'Log with photos and invoices',
+    s8:'Emergencies and repairs', s8f:'As soon as they happen', s8v:'Immediate notice; you approve above your limit',
+    g3:'Revenue', s9:'Dynamic pricing by season and events', s9f:'Daily', s9v:'Nightly rate in your portal',
+    s10:'Collections, vendor payments and local taxes', s10f:'Monthly', s10v:'Itemized statement',
+    g4:'You', s11:'Owner portal: calendar, bookings and expenses', s11f:'Always', s11v:'Everything, in real time',
+    s12:'Block dates for your own stays', s12f:'Whenever you like', s12v:'House ready when you arrive', s13:'Results review with you', s13f:'Quarterly', s13v:'Call and plan for the season',
+    rept:'You know everything without having to ask', replede:'Every month you get a one-page statement. Nights, income, expenses and what was done in the house, with photos and invoices.',
+    p1:'Occupancy calendar with your blocked dates.', p2:'Every expense with its invoice; nothing is charged without backup.', p3:'Monthly deposit to your account.',
+    stmtt:'Statement · March', tag:'Illustrative example', calaria:'March: 24 nights booked, 3 owner nights, 4 nights open',
+    l1:'Booked · 24', l2:'Owner stay · 3', l3:'Open · 4', ledcap:'Sample month summary',
+    r1:'Booking income', r2:'Management commission', r3:'Cleaning and laundry', r4:'Maintenance (A/C filters, pump)', r5:'Deposit to owner',
+    stmtnote:'Made-up figures to show the format. Your real estimate comes from your property evaluation.',
+    startt:'How we start', st1t:'Evaluation', st1p:'We visit the house (or video call), review its condition and give you a revenue estimate by season.',
+    st2t:'Preparation', st2p:'Tune-up, inventory, professional photography and listings. You approve everything before it goes live.',
+    st3t:'Live', st3p:'Your villa starts taking bookings and you start getting the report. We handle the rest.',
+    faqt:'Owner questions',
+    fq1:'What do you charge?', fa1:'It depends on the size and services of your house. You’ll see it in writing at the evaluation, before you sign anything.',
+    fq2:'Can I still use my house?', fa2:'Yes. Block your dates in the portal and the house will be clean and ready when you arrive.',
+    fq3:'What if something breaks?', fa3:'We fix it right away and notify you with photos. You set a spending limit: any repair above it needs your approval.',
+    fq4:'Which areas do you cover?', fa4:'Send us your home’s location and we’ll confirm whether we cover it.',
+    fq5:'How do I see what’s happening at my house?', fa5:'In the owner portal: calendar, bookings, messages, expenses and maintenance log, in real time. Plus the monthly statement.',
+    evalt:'Let’s evaluate your villa', evallede:'Tell us about your house and we’ll reply with next steps.',
+    e1:'A walkthrough of your house, in person or by video.', e2:'Revenue estimate by season.', e3:'We work in English or Spanish.',
+    fn:'Name', fe:'Email', fw:'WhatsApp (optional)', fr:'Is it rented now?', fr1:'Yes', fr2:'Not yet', fr3:'Under construction',
+    fm:'Anything we should know (optional)', fsend:'Request evaluation', fpriv:'We only use your details to reply to you.',
+    dt:'Received', dp:'Thank you. We’ll be in touch soon to schedule your villa’s evaluation.',
+    foot1:'Villa management · Tamarindo, Guanacaste, Costa Rica', foot2:'[Email and WhatsApp to be confirmed]'
+  };
+  const EVENTS = [
+    { m: 400,  img:'72', es:['Piscina','Limpieza, pH y cloro medidos y anotados en el parte.'], en:['Pool','Cleaned; pH and chlorine measured and logged in the report.'] },
+    { m: 510,  img:'61', es:['Terrazas y jardín','Riego, poda y muebles exteriores en su lugar.'], en:['Terraces & garden','Watering, pruning and outdoor furniture in place.'] },
+    { m: 660,  img:'15', es:['Salida de huéspedes','Inspección habitación por habitación, inventario y fotos.'], en:['Guest checkout','Room-by-room inspection, inventory and photos.'] },
+    { m: 720,  img:'27', es:['Limpieza profunda','Equipo de limpieza y ropa de cama de hotel, lavada fuera de casa.'], en:['Deep clean','Housekeeping team and hotel linens, laundered off site.'] },
+    { m: 900,  img:'44', es:['Revisión final','A/C, agua caliente, wifi y cerraduras probados antes de cada llegada.'], en:['Final check','A/C, hot water, wifi and locks tested before every arrival.'] },
+    { m: 960,  img:'09', es:['Llegada','Códigos de acceso únicos y bienvenida por mensaje.'], en:['Arrival','Unique access codes and a welcome message.'] },
+    { m: null, img:'79', es:['Atardecer','Huéspedes en la terraza. Concierge disponible para la cena.'], en:['Sunset','Guests on the terrace. Concierge on call for dinner.'] },
+    { m: 1290, img:'68', es:['Ronda nocturna','Accesos, luces y sensores verificados de forma remota.'], en:['Night round','Entries, lights and sensors verified remotely.'] }
+  ];
+
+  const original = {};
+  $$('[data-i18n]').forEach(el => original[el.dataset.i18n] = el.innerHTML);
+  $$('[data-i18n-alt]').forEach(el => original['alt:' + el.dataset.i18nAlt] = el.alt);
+  $$('[data-i18n-aria]').forEach(el => original['aria:' + el.dataset.i18nAria] = el.getAttribute('aria-label'));
+  let lang = 'es';
+  try { lang = localStorage.getItem('pleamar-lang') || (navigator.language.startsWith('es') ? 'es' : 'en'); } catch (e) {}
+
+  function setLang(l) {
+    lang = l;
+    document.documentElement.lang = l;
+    $$('[data-i18n]').forEach(el => { const k = el.dataset.i18n; el.innerHTML = l === 'en' && EN[k] ? EN[k] : original[k]; });
+    $$('[data-i18n-alt]').forEach(el => { const k = el.dataset.i18nAlt; el.alt = l === 'en' && EN[k] ? EN[k] : original['alt:' + k]; });
+    $$('[data-i18n-aria]').forEach(el => { const k = el.dataset.i18nAria; el.setAttribute('aria-label', l === 'en' && EN[k] ? EN[k] : original['aria:' + k]); });
+    $$('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === l));
+    $('#now-l').textContent = l === 'en' ? 'Now' : 'Ahora';
+    renderEvents();
+    try { localStorage.setItem('pleamar-lang', l); } catch (e) {}
+  }
+  $$('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
+
+  /* ---------- time: Costa Rica clock + live sunset (NOAA approximation) ---------- */
+  const fmt = m => String(Math.floor(m / 60) % 24).padStart(2, '0') + ':' + String(Math.round(m) % 60).padStart(2, '0');
+  function crMinutes() {
+    const p = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: TZ, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(x => [x.type, x.value]));
+    return +p.hour * 60 + +p.minute;
+  }
+  function sunsetMinutes(d = new Date()) {
+    const start = Date.UTC(d.getUTCFullYear(), 0, 0), n = Math.floor((d - start) / 864e5);
+    const g = 2 * Math.PI / 365 * (n - 1), r = Math.PI / 180;
+    const eq = 229.18 * (0.000075 + 0.001868 * Math.cos(g) - 0.032077 * Math.sin(g) - 0.014615 * Math.cos(2 * g) - 0.040849 * Math.sin(2 * g));
+    const dec = 0.006918 - 0.399912 * Math.cos(g) + 0.070257 * Math.sin(g) - 0.006758 * Math.cos(2 * g) + 0.000907 * Math.sin(2 * g) - 0.002697 * Math.cos(3 * g) + 0.00148 * Math.sin(3 * g);
+    const ha = Math.acos(Math.cos(90.833 * r) / (Math.cos(LAT * r) * Math.cos(dec)) - Math.tan(LAT * r) * Math.tan(dec)) / r;
+    return 720 - 4 * (LON - ha) - eq - 360; // UTC-6, no DST in Costa Rica
+  }
+  const SUNSET = Math.round(sunsetMinutes());
+  EVENTS[6].m = SUNSET;
+  $('#sunset').textContent = $('#rt-sun').textContent = fmt(SUNSET);
+  const tickClock = () => { $('#clock').textContent = 'CR ' + fmt(crMinutes()); placeNow(); };
+
+  /* ---------- the day rail ---------- */
+  const range = $('#hour'), stage = $('#stage'), list = $('#events'), track = $('#track');
+  const pct = m => (m / 1440 * 100) + '%';
+  EVENTS.forEach((e, i) => {
+    const img = new Image();
+    img.src = 'img/' + e.img + '.webp'; img.alt = ''; img.decoding = 'async';
+    if (i > 0) img.loading = 'lazy';
+    stage.insertBefore(img, stage.firstChild);
+    e.el = img;
+    const pin = document.createElement('i');
+    pin.className = 'rail-pin'; pin.style.left = pct(e.m);
+    track.appendChild(pin); e.pin = pin;
+  });
+  function placeNow() { $('#now').style.left = pct(crMinutes()); }
+  function activeIndex(v) { let a = 0; EVENTS.forEach((e, i) => { if (e.m <= v) a = i; }); return v < EVENTS[0].m ? EVENTS.length - 1 : a; }
+  function status(i) {
+    const now = crMinutes(), cur = activeIndex(now);
+    if (i === cur && now >= EVENTS[0].m) return 'now';
+    return EVENTS[i].m < now ? 'done' : 'sched';
+  }
+  const LBL = { es: { done:'hecho', now:'en curso', sched:'programado' }, en: { done:'done', now:'in progress', sched:'scheduled' } };
+  function renderEvents() {
+    list.innerHTML = '';
+    EVENTS.forEach((e, i) => {
+      const s = status(i), [t, d] = e[lang];
+      const li = document.createElement('li');
+      li.innerHTML = `<button type="button"><span class="t">${fmt(e.m)}</span><span><b>${t}</b><p>${d}</p></span><svg class="ic mark-${s}" role="img" aria-label="${LBL[lang][s]}"><use href="#i-${s}"/></svg></button>`;
+      li.querySelector('button').addEventListener('click', () => { range.value = e.m; show(i); });
+      list.appendChild(li);
+    });
+    show(activeIndex(+range.value));
+  }
+  let shown = -1;
+  function show(i) {
+    const e = EVENTS[i];
+    $$('li', list).forEach((li, j) => { li.classList.toggle('on', j === i); li.querySelector('button').setAttribute('aria-current', j === i ? 'true' : 'false'); });
+    EVENTS.forEach((x, j) => { x.el.classList.toggle('on', j === i); x.pin.classList.toggle('on', j === i); });
+    $('#cap-t').textContent = fmt(e.m);
+    $('#cap-l').textContent = e[lang][0];
+    shown = i;
+  }
+  range.addEventListener('input', () => {
+    const i = activeIndex(+range.value);
+    if (i !== shown) show(i);
+    range.setAttribute('aria-valuetext', fmt(+range.value) + ', ' + EVENTS[i][lang][0]);
+  });
+  range.value = Math.max(crMinutes(), EVENTS[0].m);
+
+  /* ---------- sample month calendar: 24 booked, 3 owner, 4 open ---------- */
+  const pattern = 'bbbbbbb..bbbbbooobbbbbbbbbbb..b';
+  $('#cal').innerHTML = [...pattern].map(c => `<i class="${c === 'b' ? 'b' : c === 'o' ? 'o' : ''}"></i>`).join('');
+
+  /* ---------- forms ---------- */
+  $('#quick').addEventListener('submit', ev => {
+    ev.preventDefault();
+    $('#f-loc').value = $('#q-loc').value;
+    $('#f-beds').value = $('#q-beds').value;
+    $('#evaluar').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    setTimeout(() => $('#eval [name=name]').focus({ preventScroll: true }), 500);
+  });
+  const MSG = {
+    es: { name:'Escribe tu nombre para saber cómo llamarte.', email:'Revisa el correo: debe verse como nombre@dominio.com.', emailEmpty:'Necesitamos un correo para responderte.' },
+    en: { name:'Enter your name so we know what to call you.', email:'Check the email: it should look like name@domain.com.', emailEmpty:'We need an email to reply to you.' }
+  };
+  function check(f) {
+    const m = MSG[lang]; let msg = '';
+    if (f.name === 'name' && !f.value.trim()) msg = m.name;
+    if (f.name === 'email') msg = !f.value.trim() ? m.emailEmpty : (f.validity.typeMismatch ? m.email : '');
+    f.setAttribute('aria-invalid', msg ? 'true' : 'false');
+    document.getElementById(f.getAttribute('aria-describedby')).textContent = msg;
+    return !msg;
+  }
+  $$('#eval, #retreat').forEach(form => {
+    ['name', 'email'].forEach(n => form[n].addEventListener('blur', () => check(form[n])));
+    form.addEventListener('submit', ev => {
+      ev.preventDefault();
+      const bad = ['name', 'email'].map(n => form[n]).filter(f => !check(f));
+      if (bad.length) { bad[0].focus(); return; }
+      form.querySelector('button[type=submit]').disabled = true;
+      // ponytail: no backend yet; wire to Formspree/your CRM endpoint here and only show success on a 2xx.
+      setTimeout(() => { form.classList.add('sent'); form.querySelector('.done').focus(); }, 600);
+    });
+  });
+
+  /* ---------- nav ---------- */
+  const nav = $('#nav');
+  const onScroll = () => nav.classList.toggle('solid', scrollY > 40);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  $('#yr').textContent = new Date().getFullYear();
+
+  setLang(lang);
+  tickClock(); setInterval(tickClock, 30000);
+})();
+</script>
+</body>
+</html>
