@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pleamar · Administración de villas en Guanacaste</title>
-<meta name="description" content="Administración integral de villas de lujo en Tamarindo y Guanacaste: huéspedes, limpieza, mantenimiento y reportes para el dueño.">
+<title>Pleamar · Luxury Residential Development & Villa Operations</title>
+<meta name="description" content="Luxury residential development, owner representation and private villa operations in Guanacaste, Costa Rica.">
 <meta name="theme-color" content="#0A2328">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;600;700&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;600;700&family=Cormorant+Garamond:wght@300;500;600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/67.webp">
 <style>
 :root{
@@ -26,10 +26,12 @@
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--salt);color:var(--text);font:400 1.0625rem/1.6 var(--body);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+main section{scroll-margin-top:76px}
 img{display:block;max-width:100%}
 ::selection{background:var(--sun);color:var(--ink)}
 :focus-visible{outline:2px solid var(--sun);outline-offset:3px;border-radius:2px}
 a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:1px}
+button,a,summary,select{touch-action:manipulation}
 h1,h2,h3{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:-.005em;line-height:1;margin:0;text-wrap:balance}
 h2{font-size:clamp(2.6rem,5.4vw,4.75rem);line-height:1.06}
 h3{font-size:1.5rem;line-height:1.05}
@@ -48,6 +50,7 @@ p{margin:0}
 
 /* buttons & fields */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:0 26px;border:0;border-radius:3px;background:var(--sun);color:var(--ink);font:600 1rem/1 var(--body);letter-spacing:.01em;cursor:pointer;text-decoration:none;transition:background .2s var(--ease),transform .2s var(--ease),box-shadow .2s var(--ease);box-shadow:0 1px 1px rgba(0,0,0,.12),0 8px 18px -10px rgba(0,0,0,.45)}
+.btn:not(.btn-ghost),.btn:not(.btn-ghost) span,.btn:not(.btn-ghost) .ic{color:#0A2328;-webkit-text-fill-color:#0A2328}
 .btn:hover{background:#FFBE5C;transform:translateY(-1px);box-shadow:0 2px 2px rgba(0,0,0,.12),0 14px 26px -12px rgba(0,0,0,.5)}
 .btn:active{transform:translateY(0)}
 .btn[disabled]{opacity:.55;cursor:progress;transform:none}
@@ -155,6 +158,7 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--sun);bac
 .facts .num{display:block;font-size:clamp(2.6rem,4.4vw,3.75rem);line-height:1;font-weight:400}
 .facts span:last-child{font-size:.9375rem;color:var(--text-2)}
 .src{font-size:.8125rem;color:var(--text-2);margin-bottom:40px}
+.src a{font-weight:600;color:var(--text);margin-left:.35em}
 .mosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:28px 20px}
 .mosaic figure{margin:0;grid-column:span 4}
 .mosaic .w8{grid-column:span 8;grid-row:span 2}
@@ -168,8 +172,38 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--sun);bac
 .care{display:flex;gap:8px;align-items:flex-start;margin-top:3px;font-size:.875rem;line-height:1.45;color:var(--text-2)}
 .care .ic{color:#1F8C79;margin-top:1px}
 
+/* Casa Caponera authorship */
+.story-proof{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,96px);align-items:start;margin:52px 0 58px;padding:clamp(28px,5vw,58px);background:var(--salt-2);border-top:1.5px solid var(--text)}
+.story-proof .platform-kicker{color:var(--text-2)}
+.story-proof h3{font-size:clamp(2.25rem,4.4vw,4rem);max-width:12ch}
+.story-quote{margin:0;font:300 clamp(1.75rem,3.2vw,2.9rem)/1.15 "Cormorant Garamond",Georgia,serif;color:var(--text);text-wrap:balance}
+.story-quote cite{display:block;margin-top:20px;font:600 .75rem/1.4 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--text-2)}
+.story-copy{margin-top:28px;color:var(--text-2);max-width:62ch}
+.story-copy p+p{margin-top:16px}
+
+/* experience to belonging */
+.experience-path{padding:clamp(96px,12vw,164px) 0;background:var(--ink);color:var(--on-ink)}
+.xp-head{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(36px,7vw,100px);align-items:end}
+.experience-path .platform-kicker,.experience-path .lede{color:var(--on-ink-2)}
+.xp-intro{margin-top:56px;padding:clamp(26px,4vw,46px) 0;border-top:1.5px solid var(--on-ink);border-bottom:1px solid var(--line-ink);display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);gap:clamp(32px,7vw,104px)}
+.xp-intro strong{font:300 clamp(2rem,4vw,3.65rem)/1.08 "Cormorant Garamond",Georgia,serif;color:var(--on-ink);text-wrap:balance}
+.xp-intro-copy{color:var(--on-ink-2);max-width:64ch}
+.xp-intro-copy p+p{margin-top:16px}
+.xp-grid{display:grid;grid-template-columns:repeat(3,1fr);margin-top:64px;border-top:1px solid var(--line-ink)}
+.xp-card{padding:28px 28px 28px 0;min-height:360px;display:flex;flex-direction:column}
+.xp-card+.xp-card{padding-left:28px;border-left:1px solid var(--line-ink)}
+.xp-card .num{font-size:2.6rem;color:var(--sun)}
+.xp-card h3{font-size:clamp(1.7rem,2.7vw,2.5rem);margin:18px 0}
+.xp-card p{color:var(--on-ink-2)}
+.xp-card .xp-emphasis{margin-top:auto;padding-top:30px;font:300 clamp(1.4rem,2.4vw,2rem)/1.12 "Cormorant Garamond",Georgia,serif;color:var(--on-ink)}
+.xp-network{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:clamp(34px,7vw,100px);margin-top:58px;padding-top:44px;border-top:1.5px solid var(--on-ink)}
+.xp-network h3{font-size:clamp(2.1rem,4.2vw,3.8rem);max-width:14ch}
+.xp-network-copy{color:var(--on-ink-2)}
+.xp-network-copy p+p{margin-top:16px}
+.xp-finale{margin-top:34px;padding:24px 0;border-top:1px solid var(--line-ink);border-bottom:1px solid var(--line-ink);font:300 clamp(1.55rem,2.8vw,2.45rem)/1.2 "Cormorant Garamond",Georgia,serif;color:var(--on-ink)}
+
 /* retreats */
-.retreats{padding:clamp(88px,11vw,150px) 0;background:var(--salt-2)}
+.retreats{display:none}
 .rt-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:end}
 .rt-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,56px);margin-top:56px;align-items:start}
 .rt-photo{margin:0;position:sticky;top:100px}
@@ -193,8 +227,59 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--sun);bac
 .rt-plan{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,96px);margin-top:clamp(72px,9vw,120px);align-items:start}
 .rt-plan h2{font-size:clamp(2.2rem,4vw,3.25rem)}
 .rt-plan .points{margin-top:28px}
+.rt-external{padding-top:clamp(64px,8vw,96px);border-top:1.5px solid var(--text)}
+.rt-external .tag{margin-bottom:18px}
 form.rt-form{background:var(--ink-2);color:var(--on-ink)}
 .eval form,.rt-form{color-scheme:dark}
+
+/* integrated platform */
+.platform{padding:clamp(88px,11vw,150px) 0;background:var(--salt-2)}
+.platform-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:end}
+.platform-kicker{display:block;margin-bottom:16px;color:var(--text-2);font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);margin-top:58px;border-top:1.5px solid var(--text)}
+.pillar{padding:28px 28px 28px 0;min-height:340px;display:flex;flex-direction:column}
+.pillar+.pillar{padding-left:28px;border-left:1px solid var(--line)}
+.pillar .num{font-size:3.5rem;color:var(--text-2);line-height:1}
+.pillar h3{font-size:clamp(1.8rem,3vw,2.75rem);margin:18px 0 16px}
+.pillar>p{color:var(--text-2);max-width:36ch}
+.pillar ul{list-style:none;margin:auto 0 0;padding:28px 0 0}
+.pillar li{padding:9px 0;border-top:1px solid var(--line);font-size:.9rem}
+.platform-line{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;margin-top:44px;padding:24px 0;border-top:1.5px solid var(--text);border-bottom:1px solid var(--line)}
+.platform-line strong{font:600 clamp(1.8rem,3vw,2.7rem)/1.05 var(--display);text-transform:uppercase}
+.platform-line span{color:var(--text-2);max-width:42ch}
+
+/* private circle */
+.circle{padding:clamp(96px,12vw,160px) 0;background:var(--ink);color:var(--on-ink);border-top:1px solid var(--line-ink)}
+.circle-head{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(36px,7vw,100px);align-items:end}
+.circle .platform-kicker{color:var(--on-ink-2)}
+.circle .lede{color:var(--on-ink-2)}
+.circle-criteria{display:grid;grid-template-columns:repeat(4,1fr);margin-top:58px;border-top:1.5px solid var(--on-ink)}
+.criterion{padding:24px 22px 18px 0}
+.criterion+.criterion{padding-left:22px;border-left:1px solid var(--line-ink)}
+.criterion .num{font-size:2.4rem;color:var(--on-ink-2)}
+.criterion h3{margin:14px 0 10px;font-size:1.35rem}
+.criterion p{color:var(--on-ink-2);font-size:.9rem;line-height:1.5}
+.circle-gate{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,86px);margin-top:54px;padding-top:42px;border-top:1px solid var(--line-ink)}
+.circle-track{background:var(--ink-2);border:1px solid var(--line-ink);border-radius:4px;padding:clamp(24px,3vw,36px)}
+.circle-track h3{font-size:clamp(1.7rem,3vw,2.4rem)}
+.circle-track p{color:var(--on-ink-2);margin:16px 0 22px}
+.circle-track ul{list-style:none;margin:0;padding:0}
+.circle-track li{padding:11px 0;border-top:1px solid var(--line-ink);font-size:.9rem}
+.circle-action{display:flex;justify-content:space-between;align-items:center;gap:30px;margin-top:34px;padding-top:28px;border-top:1px solid var(--line-ink)}
+.circle-action p{max-width:64ch;color:var(--on-ink-2);font-size:.83rem}
+
+/* developer partnerships */
+.developers{padding:clamp(92px,11vw,150px) 0;background:var(--paper)}
+.dev-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:end}
+.dev-path{display:grid;grid-template-columns:repeat(4,1fr);margin-top:58px;border-top:1.5px solid var(--text)}
+.dev-step{padding:24px 22px 18px 0}
+.dev-step+.dev-step{padding-left:22px;border-left:1px solid var(--line)}
+.dev-step .num{font-size:2.5rem;color:var(--text-2)}
+.dev-step h3{margin:14px 0 10px;font-size:1.35rem}
+.dev-step p{color:var(--text-2);font-size:.9rem;line-height:1.5}
+.dev-value{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);gap:clamp(32px,6vw,90px);align-items:start;margin-top:54px;padding-top:40px;border-top:1px solid var(--line)}
+.dev-value h3{font-size:clamp(2rem,4vw,3.4rem)}
+.dev-value .points{margin-top:0}
 
 /* services */
 .services{padding:clamp(88px,11vw,150px) 0}
@@ -266,11 +351,13 @@ form.rt-form{background:var(--ink-2);color:var(--on-ink)}
 .seg input:focus-visible+span{outline:2px solid var(--sun);outline-offset:2px}
 .form-foot{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:12px}
 .form-foot small{color:var(--on-ink-2);font-size:.8125rem}
+.form-foot small a{color:var(--on-ink);font-weight:600}
 .done{grid-column:1/-1;display:none;padding:12px 0}
 .done h3{font-size:2.25rem;margin:10px 0}
 .done p{color:var(--on-ink-2)}
 form.sent>*:not(.done){display:none}
 form.sent .done{display:block}
+form.mail-ready .done{display:block}
 .eval-points{margin-top:32px;display:grid;gap:14px}
 .eval-points div{display:flex;gap:12px;color:var(--on-ink-2)}
 .eval-points .ic{color:var(--sea);margin-top:3px}
@@ -296,7 +383,7 @@ footer .brand{color:var(--on-ink)}
   .lang{margin-left:auto}
   .hero .wrap{grid-template-columns:1fr}
   .board{max-width:560px}
-  .day-head,.villa-head,.svc-head{grid-template-columns:1fr;gap:20px}
+  .day-head,.villa-head,.svc-head,.platform-head,.circle-head,.dev-head,.xp-head,.story-proof,.xp-intro,.xp-network{grid-template-columns:1fr;gap:20px}
   .day-body{grid-template-columns:1fr}
   .stage{position:relative;top:0}
   .report .wrap,.eval .wrap,.faq,.rt-head,.rt-body,.rt-plan{grid-template-columns:1fr}
@@ -308,9 +395,23 @@ footer .brand{color:var(--on-ink)}
   .facts{grid-template-columns:repeat(3,1fr)}
   .facts div:nth-child(4){padding-left:0;border-left:0}
   .facts div:nth-child(n+4){border-top:1px solid var(--line)}
+  .pillars{grid-template-columns:1fr}
+  .pillar{min-height:0;padding:28px 0}
+  .pillar+.pillar{padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .pillar ul{margin-top:8px}
+  .circle-criteria{grid-template-columns:1fr 1fr}
+  .criterion:nth-child(3){padding-left:0;border-left:0;border-top:1px solid var(--line-ink)}
+  .dev-path{grid-template-columns:1fr 1fr}
+  .dev-step:nth-child(3){padding-left:0;border-left:0;border-top:1px solid var(--line)}
+  .dev-value{grid-template-columns:1fr}
+  .xp-grid{grid-template-columns:1fr}
+  .xp-card{min-height:0;padding:28px 0}
+  .xp-card+.xp-card{padding-left:0;border-left:0;border-top:1px solid var(--line-ink)}
+  .xp-card .xp-emphasis{margin-top:8px}
 }
 @media (max-width:720px){
   body{font-size:1rem}
+  main section{scroll-margin-top:64px}
   .nav .wrap{height:64px;gap:12px}
   .nav .btn{display:none}
   .brand{font-size:1.35rem}
@@ -345,6 +446,14 @@ footer .brand{color:var(--on-ink)}
   .rt-day li,.rt-day li+li{padding:16px 12px 16px 0;border-left:0}
   .rt-day li:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
   .cal{gap:2px}
+  .platform-line,.circle-gate{grid-template-columns:1fr}
+  .circle-criteria{grid-template-columns:1fr}
+  .criterion,.criterion+.criterion,.criterion:nth-child(3){padding:20px 0;border-left:0;border-top:1px solid var(--line-ink)}
+  .criterion:first-child{border-top:0}
+  .circle-action{align-items:flex-start;flex-direction:column}
+  .dev-path{grid-template-columns:1fr}
+  .dev-step,.dev-step+.dev-step,.dev-step:nth-child(3){padding:20px 0;border-left:0;border-top:1px solid var(--line)}
+  .dev-step:first-child{border-top:0}
 }
 </style>
 </head>
@@ -369,18 +478,17 @@ footer .brand{color:var(--on-ink)}
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Pleamar, inicio"><svg aria-hidden="true"><use href="#i-wave"/></svg>PLEAMAR</a>
     <nav class="nav-links" aria-label="Principal">
-      <a href="#dia" data-i18n="nav1">Un día de cuidado</a>
-      <a href="#villa" data-i18n="nav2">La villa</a>
-      <a href="#retreats" data-i18n="nav6">Retreats</a>
-      <a href="#servicios" data-i18n="nav3">Servicios</a>
-      <a href="#reportes" data-i18n="nav4">Reportes</a>
-      <a href="#preguntas" data-i18n="nav5">Preguntas</a>
+      <a href="#platform" data-i18n="nav1">Develop</a>
+      <a href="#platform" data-i18n="nav2">Represent</a>
+      <a href="#servicios" data-i18n="nav3">Operate</a>
+      <a href="retreats.html" data-i18n="nav6">Private retreats</a>
+      <a href="#circle" data-i18n="nav4">Private circle</a>
     </nav>
     <div class="lang" role="group" aria-label="Idioma / Language">
       <button type="button" data-lang="es" aria-pressed="true">ES</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
     </div>
-    <a class="btn" href="#evaluar" data-i18n="navcta">Evaluar mi propiedad</a>
+    <a class="btn" href="#evaluar" data-i18n="navcta">Conversación privada</a>
   </div>
 </header>
 
@@ -389,10 +497,10 @@ footer .brand{color:var(--on-ink)}
   <img class="hero-img" src="img/67.webp" alt="Piscina de nado infinita frente a una villa contemporánea de tres niveles en Tamarindo" width="2400" height="1602" fetchpriority="high" data-i18n-alt="heroalt">
   <div class="wrap">
     <div>
-      <h1 id="h1" data-i18n="h1">Tu villa, impecable. <em>Todos los días.</em></h1>
-      <p class="lede" data-i18n="herolede">Huéspedes, limpieza, mantenimiento y dinero. Tú solo lees el parte.</p>
+      <h1 id="h1" data-i18n="h1">Creamos la residencia. <em>Operamos la experiencia.</em></h1>
+      <p class="lede" data-i18n="herolede">Luxury residential development, owner representation y private villa operations en Guanacaste, bajo un solo equipo responsable.</p>
       <form class="quick" id="quick" aria-label="Evaluación rápida">
-        <label><span class="field-label" data-i18n="q1">¿Dónde está?</span>
+        <label><span class="field-label" data-i18n="q1">Ubicación</span>
           <select name="loc" id="q-loc">
             <option value="Tamarindo">Tamarindo</option>
             <option value="Playa Langosta">Playa Langosta</option>
@@ -401,36 +509,56 @@ footer .brand{color:var(--on-ink)}
             <option value="Conchal">Conchal</option>
             <option value="Otro" data-i18n="other">Otro lugar</option>
           </select></label>
-        <label><span class="field-label" data-i18n="q2">Habitaciones</span>
+        <label><span class="field-label" data-i18n="q2">¿Qué necesitas?</span>
           <select name="beds" id="q-beds">
-            <option>2</option><option>3</option><option selected>4</option><option>5</option><option value="6+">6+</option>
+            <option value="develop" data-i18n="qi1">Diseñar o construir</option>
+            <option value="remodel" data-i18n="qi2">Remodelar</option>
+            <option value="represent" data-i18n="qi3">Owner representation</option>
+            <option value="operate" selected data-i18n="qi4">Operar una villa</option>
+            <option value="experience" data-i18n="qi5">Concierge o retreat</option>
+            <option value="capital" data-i18n="qi6">Alianza estratégica</option>
           </select></label>
-        <button class="btn" type="submit"><span data-i18n="qbtn">Evaluar mi propiedad</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <button class="btn" type="submit"><span data-i18n="qbtn">Iniciar conversación</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
       </form>
     </div>
 
     <aside class="board" aria-labelledby="board-t">
       <div class="board-head">
-        <span id="board-t" data-i18n="boardt">Parte de hoy · Villa Tamarindo</span>
+        <span id="board-t" data-i18n="boardt">Casa Caponera · El estándar</span>
         <span class="live"><i class="pulse" aria-hidden="true"></i><span id="clock">--:--</span></span>
       </div>
       <dl>
-        <div class="row"><svg class="ic mark-now" aria-hidden="true"><use href="#i-sun"/></svg><dt data-i18n="b1">Atardecer</dt><dd id="sunset">17:30</dd></div>
-        <div class="row"><svg class="ic mark-done" aria-hidden="true"><use href="#i-done"/></svg><dt data-i18n="b2">Piscina revisada</dt><dd>06:40<small data-i18n="b2s">pH 7.4</small></dd></div>
-        <div class="row"><svg class="ic mark-now" aria-hidden="true"><use href="#i-now"/></svg><dt data-i18n="b3">Limpieza de salida</dt><dd><span data-i18n="b3v">En curso</span></dd></div>
-        <div class="row"><svg class="ic mark-sched" aria-hidden="true"><use href="#i-key"/></svg><dt data-i18n="b4">Llegan 12 huéspedes</dt><dd>16:00</dd></div>
-        <div class="row"><svg class="ic" style="color:var(--sun)" aria-hidden="true"><use href="#i-star"/></svg><dt data-i18n="b5">Calificación en Airbnb</dt><dd>5.0<small data-i18n="b5s">36 reseñas</small></dd></div>
+        <div class="row"><svg class="ic mark-done" aria-hidden="true"><use href="#i-done"/></svg><dt data-i18n="b1">Diseñada por nosotros</dt><dd data-i18n="b1v">Una visión</dd></div>
+        <div class="row"><svg class="ic mark-done" aria-hidden="true"><use href="#i-done"/></svg><dt data-i18n="b2">Construida por nosotros</dt><dd data-i18n="b2v">De origen</dd></div>
+        <div class="row"><svg class="ic mark-now" aria-hidden="true"><use href="#i-now"/></svg><dt data-i18n="b3">Operada por nosotros</dt><dd><span data-i18n="b3v">Cada día</span></dd></div>
+        <div class="row"><svg class="ic" style="color:var(--sun)" aria-hidden="true"><use href="#i-star"/></svg><dt data-i18n="b4">Calificación en Airbnb</dt><dd>5.0<small data-i18n="b4s">36 reseñas</small></dd></div>
+        <div class="row"><svg class="ic mark-done" aria-hidden="true"><use href="#i-done"/></svg><dt data-i18n="b5">Guest Favorite</dt><dd>TOP 5%</dd></div>
       </dl>
-      <p class="board-foot" data-i18n="boardfoot">Atardecer calculado en vivo para Tamarindo. Calificación real de Airbnb. El resto es un parte de ejemplo.</p>
+      <p class="board-foot" data-i18n="boardfoot">Casa Caponera prueba el ciclo completo: diseño, construcción, operación y hospitalidad.</p>
     </aside>
+  </div>
+</section>
+
+<section class="platform" id="platform" aria-labelledby="platform-t">
+  <div class="wrap">
+    <div class="platform-head">
+      <div><h2 id="platform-t" data-i18n="platformt">De la primera idea a cada llegada.</h2></div>
+      <p class="lede" data-i18n="platformlede">No entregamos una casa y desaparecemos. Creamos el activo, representamos al propietario y operamos la residencia bajo la misma visión que le dio origen.</p>
+    </div>
+    <div class="pillars">
+      <article class="pillar"><span class="num">01</span><h3 data-i18n="pd1">Develop</h3><p data-i18n="pd1p">Diseñamos, construimos y remodelamos residencias extraordinarias para vivir bien, recibir mejor y conservar valor.</p><ul><li data-i18n="pd1a">Diseño y desarrollo residencial</li><li data-i18n="pd1b">Construcción y remodelación</li><li data-i18n="pd1c">Interiores, equipamiento y entrega</li></ul></article>
+      <article class="pillar"><span class="num">02</span><h3 data-i18n="pd2">Represent</h3><p data-i18n="pd2p">Protegemos la intención, el tiempo, el capital y el activo del propietario frente a cada parte del proyecto.</p><ul><li data-i18n="pd2a">Owner representation</li><li data-i18n="pd2b">Presupuesto, calidad y cronograma</li><li data-i18n="pd2c">Compras, contratos y control de obra</li></ul></article>
+      <article class="pillar"><span class="num">03</span><h3 data-i18n="pd3">Operate</h3><p data-i18n="pd3p">Operamos cada villa como hospitalidad privada: mantenimiento, equipo, huéspedes, concierge y experiencias.</p><ul><li data-i18n="pd3a">Villa operations y mantenimiento</li><li data-i18n="pd3b">Private hospitality y concierge</li><li><a href="retreats.html" data-i18n="pd3c">Private Retreats →</a></li></ul></article>
+    </div>
+    <div class="platform-line"><strong data-i18n="plstrong">Una visión. Un equipo responsable.</strong><span data-i18n="plcopy">La continuidad elimina los vacíos entre quien diseña, quien construye y quien debe hacer funcionar la casa.</span></div>
   </div>
 </section>
 
 <section class="ink day" id="dia" aria-labelledby="dia-t">
   <div class="wrap">
     <div class="day-head">
-      <h2 id="dia-t" data-i18n="dayt">Un día bajo nuestro cuidado</h2>
-      <p class="lede" data-i18n="daylede">Arrastra la línea del día. Cada hora tiene alguien responsable y queda registrada en tu portal. La línea punteada es la hora actual en Costa Rica.</p>
+      <h2 id="dia-t" data-i18n="dayt">Operación visible. Responsabilidad real.</h2>
+      <p class="lede" data-i18n="daylede">La hospitalidad privada no depende de improvisación. Cada hora tiene un responsable, cada acción deja evidencia y el propietario conserva visibilidad sin administrar la casa.</p>
     </div>
 
     <div class="rail" id="rail">
@@ -463,8 +591,8 @@ footer .brand{color:var(--on-ink)}
 <section class="villa" id="villa" aria-labelledby="villa-t">
   <div class="wrap">
     <div class="villa-head">
-      <h2 id="villa-t" data-i18n="villat">La prueba es la casa</h2>
-      <p class="lede" data-i18n="villalede">Villa con vista al Pacífico, rooftop y piscina de nado infinita, a pocos minutos caminando del centro de Tamarindo. Así se ve una casa que nunca se descuida, y lo que hacemos para que siga así.</p>
+      <h2 id="villa-t" data-i18n="villat">El estándar no se eligió. Lo creamos.</h2>
+      <p class="lede" data-i18n="villalede">Diseñamos Casa Caponera, dirigimos su construcción y hoy la operamos. La casa demuestra que una misma visión puede sostener arquitectura, mantenimiento y hospitalidad cinco estrellas.</p>
     </div>
     <div class="facts" role="list">
       <div role="listitem"><span class="num">4</span><span data-i18n="f1">Habitaciones</span></div>
@@ -473,7 +601,22 @@ footer .brand{color:var(--on-ink)}
       <div role="listitem"><span class="num">12</span><span data-i18n="f4">Huéspedes</span></div>
       <div role="listitem"><span class="num">5.0<svg class="ic" style="color:var(--sun-deep);width:.5em;height:.5em;vertical-align:.5em;margin-left:4px" aria-hidden="true"><use href="#i-star"/></svg></span><span data-i18n="f5">36 reseñas en Airbnb</span></div>
     </div>
-    <p class="src" data-i18n="src">Datos y fotos del anuncio público de la villa en Airbnb. Debajo de cada foto, su rutina de cuidado.</p>
+    <p class="src"><span data-i18n="src">Datos y fotos del anuncio público de la villa en Airbnb. Debajo de cada foto, su rutina de cuidado.</span> <a href="https://www.airbnb.com/rooms/1306713118635156414" target="_blank" rel="noopener" data-i18n="srclink">Ver las 36 reseñas verificadas ↗</a></p>
+
+    <div class="story-proof">
+      <div>
+        <span class="platform-kicker" data-i18n="storyk">La historia detrás del estándar</span>
+        <h3 data-i18n="storyt">Antes de ser una casa, fue una promesa.</h3>
+        <div class="story-copy">
+          <p data-i18n="storyp1">Busqué la propiedad perfecta, la vendí, diseñé la casa y asumí la responsabilidad de construirla porque el concepto no podía perderse entre una decisión y la siguiente.</p>
+          <p data-i18n="storyp2">Casa Caponera nació de una relación de confianza: proteger el capital de alguien considerado familia y convertir una visión completa —terreno, arquitectura, materiales, operación y experiencia— en una realidad verificable.</p>
+        </div>
+      </div>
+      <blockquote class="story-quote">
+        <span data-i18n="storyq">“El olor de Tamarindo significa en mi mente casa. Todo el resto para mí es viajar.”</span>
+        <cite data-i18n="storycite">Fundador · Casa Caponera</cite>
+      </blockquote>
+    </div>
 
     <div class="mosaic">
       <figure class="w8"><div class="ph"><img src="img/65.webp" alt="La villa completa con su piscina de nado infinita entre la vegetación" loading="lazy" width="1600" height="1039" data-i18n-alt="a1"></div>
@@ -492,6 +635,40 @@ footer .brand{color:var(--on-ink)}
         <figcaption><b data-i18n="c7">De noche</b><span class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="k7">Iluminación, cerraduras con código y accesos verificados cada noche.</span></span></figcaption></figure>
       <figure class="w6"><div class="ph"><img src="img/75.webp" alt="Vista aérea de Tamarindo al atardecer con el océano al fondo" loading="lazy" width="2400" height="1798" data-i18n-alt="a8"></div>
         <figcaption><b data-i18n="c8">Tamarindo, desde arriba</b><span class="care"><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="k8">A pocos minutos caminando del centro, la playa y los restaurantes.</span></span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="experience-path" id="experience" aria-labelledby="experience-t">
+  <div class="wrap">
+    <div class="xp-head">
+      <div><span class="platform-kicker">The Casa Caponera Experience</span><h2 id="experience-t" data-i18n="xpt">El lujo no debería sentirse complicado. Debería sentirse natural.</h2></div>
+      <p class="lede" data-i18n="xplede">Desde el momento en que decides venir a Costa Rica, cada parte de la experiencia se considera cuidadosamente: transporte, llegada, actividades, alimentación, familia y cada detalle de la estadía.</p>
+    </div>
+
+    <div class="xp-intro">
+      <strong data-i18n="xpstrong">Llegas, te instalas y disfrutas Costa Rica.</strong>
+      <div class="xp-intro-copy">
+        <p data-i18n="xpi1">Nos tomamos el tiempo para entender quién viene, qué disfruta, cómo viaja y qué espera. Familias, parejas, niños y distintas generaciones pueden vivir una experiencia diseñada alrededor de cada uno, mientras comparten la misma casa y un destino extraordinario.</p>
+        <p data-i18n="xpi2">Una vez que llegas, el objetivo es simple: no deberías tener que resolver nada. Todo ya está atendido.</p>
+        <p data-i18n="xpi3">Nuestra visión es crear un nivel de servicio donde Costa Rica comience a sentirse como tu propio lugar: un lugar que conoces, en el que confías y del que eventualmente no quieres irte.</p>
+      </div>
+    </div>
+
+    <div class="xp-grid">
+      <article class="xp-card"><span class="num">01</span><h3 data-i18n="xp1t">Más que una estadía</h3><p data-i18n="xp1p">La experiencia de lujo correcta puede cambiar la forma en que alguien ve un destino. Un huésped puede llegar de vacaciones y descubrir algo mucho más grande: un estilo de vida que podría imaginar como parte de su vida.</p><p class="xp-emphasis" data-i18n="xp1e">“No solo quiero venir aquí. Quiero tener un lugar aquí.”</p></article>
+      <article class="xp-card"><span class="num">02</span><h3 data-i18n="xp2t">Del huésped al propietario</h3><p data-i18n="xp2p">Quien vive la propiedad, el servicio y el estilo de vida entiende algo que las fotografías no pueden comunicar: cómo se siente poseer y operar una casa a este nivel.</p><p class="xp-emphasis" data-i18n="xp2e">Un huésped puede convertirse en propietario. Un propietario, en inversionista.</p></article>
+      <article class="xp-card"><span class="num">03</span><h3 data-i18n="xp3t">Una relación natural</h3><p data-i18n="xp3p">Así nace una relación natural entre el huésped, la propiedad y la oportunidad: una red de personas que ya entienden el producto, el estilo de vida y el valor detrás de ambos.</p><p class="xp-emphasis" data-i18n="xp3e">La experiencia primero. La relación después.</p></article>
+    </div>
+
+    <div class="xp-network">
+      <div><span class="platform-kicker" data-i18n="xpnk">La visión a largo plazo</span><h3 data-i18n="xpnt">Construir una colección alrededor de un estándar compartido.</h3></div>
+      <div class="xp-network-copy">
+        <p data-i18n="xpnp1">Algunos clientes ya poseen una propiedad que necesita elevarse a ese estándar. Otros quieren construir algo completamente nuevo. Podemos ayudar con ambos.</p>
+        <p data-i18n="xpnp2">Desde evaluar una residencia existente, identificar lo que falta y remodelarla, hasta diseñar y desarrollar una casa desde cero, nuestro papel es reunir el concepto completo: diseño, construcción, project management, control financiero, coordinación legal, operación, experiencia del huésped y villa management.</p>
+        <p data-i18n="xpnp3">Todo se construye alrededor de un objetivo: crear una propiedad que las personas quieran vivir, un estilo de vida al que quieran regresar y un activo que quieran poseer.</p>
+        <p class="xp-finale" data-i18n="xpf">Casa Caponera es el comienzo de esa visión. La casa es la primera expresión. La experiencia es la prueba. Y quienes la viven son el comienzo de la red.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -549,13 +726,13 @@ footer .brand{color:var(--on-ink)}
       </ol>
     </div>
 
-    <div class="rt-plan">
+    <div class="rt-plan rt-stay">
       <div>
-        <h2 data-i18n="rpt">Planea tu retreat</h2>
+        <h2 data-i18n="rpt">Vive tu retreat en Casa Caponera</h2>
         <ul class="points">
-          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="rp1">La villa completa y privada: 4 suites, rooftop y piscina de nado.</span></li>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="rp2">Programa armado contigo antes de llegar.</span></li>
-          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="rp3">Un solo contacto para todo durante la estadía.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="rp1">Casa privada para hasta 12 personas, con vista al mar y piscina de 25 yardas.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="rp2">Sauna, cold plunge, masajes, sound healing y chef coordinados en un solo plan.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="rp3">Fechas, hospedaje y programa diseñados alrededor de tu grupo.</span></li>
         </ul>
       </div>
       <form class="rt-form" id="retreat" novalidate>
@@ -577,13 +754,69 @@ footer .brand{color:var(--on-ink)}
           </div><span class="err"></span></fieldset>
         <label class="full"><span class="field-label" data-i18n="rfm">Cuéntanos de tu grupo (opcional)</span><textarea name="msg"></textarea></label>
         <div class="form-foot full">
-          <button class="btn" type="submit"><span data-i18n="rfsend">Planear mi retreat</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <button class="btn" type="submit"><span data-i18n="rfsend">Consultar fechas</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
           <small data-i18n="fpriv">Solo usamos tus datos para responderte.</small>
         </div>
         <div class="done" role="status" tabindex="-1">
           <svg class="ic mark-done" style="width:40px;height:40px" aria-hidden="true"><use href="#i-done"/></svg>
           <h3 data-i18n="dt">Recibido</h3>
-          <p data-i18n="rdp">Gracias. Te escribiremos pronto con una propuesta de programa para tu grupo.</p>
+          <p data-i18n="rdp">Gracias. Te escribiremos pronto con disponibilidad y un programa recomendado para tu grupo.</p>
+        </div>
+      </form>
+    </div>
+
+    <div class="rt-plan rt-external">
+      <div>
+        <span class="tag" data-i18n="exttag">Para villas privadas</span>
+        <h2 data-i18n="extt">Lleva un retreat Pleamar a tu villa</h2>
+        <p class="lede" style="margin-top:22px" data-i18n="extlede">Casa Caponera es nuestra referencia de nivel. Si ya tienes una villa y un equipo de administración, podemos sumar la producción de wellness y concierge, siempre que la propiedad iguale o supere ese estándar de lujo, privacidad y operación.</p>
+        <ul class="points">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="ext1">Property Fit Review comparado con el estándar Casa Caponera: espacio, accesos, cocina, amenidades y servicio.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="ext2">Programa calculado según personas, noches y experiencias seleccionadas.</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="ext3">Nos integramos con tu property manager o personal existente.</span></li>
+        </ul>
+      </div>
+      <form class="rt-form" id="retreat-property" novalidate>
+        <label><span class="field-label" data-i18n="fn">Nombre</span><input name="name" autocomplete="name" required aria-describedby="xerr-name"><span class="err" id="xerr-name" aria-live="polite"></span></label>
+        <label><span class="field-label" data-i18n="fe">Correo</span><input name="email" type="email" autocomplete="email" required aria-describedby="xerr-email"><span class="err" id="xerr-email" aria-live="polite"></span></label>
+        <label class="full"><span class="field-label" data-i18n="xfloc">Ubicación de la propiedad</span><input name="location" autocomplete="street-address" required><span class="err"></span></label>
+        <label class="full"><span class="field-label" data-i18n="xfurl">Enlace de la propiedad o carpeta de fotos (opcional)</span><input name="property-url" type="url" autocomplete="url"><span class="err"></span></label>
+        <label><span class="field-label" data-i18n="xfbeds">Habitaciones</span>
+          <select name="bedrooms"><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option><option value="6+">6+</option></select><span class="err"></span></label>
+        <label><span class="field-label" data-i18n="rfg">Tamaño del grupo</span>
+          <select name="group"><option value="4-6" data-i18n="rfg1">4 a 6 personas</option><option value="7-9" data-i18n="rfg2">7 a 9 personas</option><option value="10-12" selected data-i18n="rfg3">10 a 12 personas</option><option value="13-16" data-i18n="xfg4">13 a 16 personas</option><option value="17+" data-i18n="xfg5">17 o más</option></select><span class="err"></span></label>
+        <label><span class="field-label" data-i18n="xfnights">Duración estimada</span>
+          <select name="nights"><option value="2-3" data-i18n="xfn1">2 a 3 noches</option><option value="4-5" selected data-i18n="xfn2">4 a 5 noches</option><option value="6+" data-i18n="xfn3">6 noches o más</option></select><span class="err"></span></label>
+        <label><span class="field-label" data-i18n="xfmgmt">Administración actual</span>
+          <select name="management"><option value="manager" data-i18n="xfm1">Tengo property manager</option><option value="team" data-i18n="xfm2">Tengo personal propio</option><option value="self" data-i18n="xfm3">La administro personalmente</option></select><span class="err"></span></label>
+        <fieldset class="full"><legend class="field-label" data-i18n="xfa">Amenidades disponibles</legend>
+          <div class="seg">
+            <label><input type="checkbox" name="amenity" value="pool"><span data-i18n="xa1">Piscina</span></label>
+            <label><input type="checkbox" name="amenity" value="view"><span data-i18n="xa2">Vista al mar o naturaleza</span></label>
+            <label><input type="checkbox" name="amenity" value="practice"><span data-i18n="xa3">Área de práctica</span></label>
+            <label><input type="checkbox" name="amenity" value="kitchen"><span data-i18n="xa4">Cocina para chef</span></label>
+            <label><input type="checkbox" name="amenity" value="sauna"><span>Sauna</span></label>
+            <label><input type="checkbox" name="amenity" value="cold-plunge"><span>Cold plunge</span></label>
+            <label><input type="checkbox" name="amenity" value="massage"><span data-i18n="xa5">Área para masajes</span></label>
+          </div><span class="err"></span></fieldset>
+        <fieldset class="full"><legend class="field-label" data-i18n="xfs">Servicios que te interesan</legend>
+          <div class="seg">
+            <label><input type="checkbox" name="service" value="production"><span data-i18n="xs1">Producción completa</span></label>
+            <label><input type="checkbox" name="service" value="chef"><span data-i18n="xs2">Chef privado</span></label>
+            <label><input type="checkbox" name="service" value="wellness"><span data-i18n="xs3">Facilitadores wellness</span></label>
+            <label><input type="checkbox" name="service" value="massage"><span data-i18n="ri3">Masajes</span></label>
+            <label><input type="checkbox" name="service" value="sound"><span>Sound healing</span></label>
+            <label><input type="checkbox" name="service" value="transport"><span data-i18n="xs4">Traslados y experiencias</span></label>
+          </div><span class="err"></span></fieldset>
+        <label class="full"><span class="field-label" data-i18n="xfm">Cuéntanos sobre la propiedad y el retreat que imaginas</span><textarea name="msg"></textarea></label>
+        <div class="form-foot full">
+          <button class="btn" type="submit"><span data-i18n="xfsend">Solicitar Property Fit Review</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <small data-i18n="fpriv">Solo usamos tus datos para responderte.</small>
+        </div>
+        <div class="done" role="status" tabindex="-1">
+          <svg class="ic mark-done" style="width:40px;height:40px" aria-hidden="true"><use href="#i-done"/></svg>
+          <h3 data-i18n="dt">Recibido</h3>
+          <p data-i18n="xdp">Gracias. Revisaremos la información y te contactaremos para confirmar si la propiedad hace fit con Pleamar.</p>
         </div>
       </form>
     </div>
@@ -593,30 +826,29 @@ footer .brand{color:var(--on-ink)}
 <section class="ink services" id="servicios" aria-labelledby="svc-t">
   <div class="wrap">
     <div class="svc-head">
-      <h2 id="svc-t" data-i18n="svct">Todo, en una tabla</h2>
-      <p class="lede" data-i18n="svclede">Sin paquetes ni letra pequeña: esto es lo que hacemos, cada cuánto y qué ves tú.</p>
+      <h2 id="svc-t" data-i18n="svct">Tres funciones. Una responsabilidad.</h2>
+      <p class="lede" data-i18n="svclede">La estructura mantiene continuidad desde el desarrollo hasta la operación privada de la residencia.</p>
     </div>
     <table class="svc">
-      <caption class="sr" data-i18n="svccap">Servicios de administración, frecuencia y lo que ve el dueño</caption>
-      <thead><tr><th scope="col" data-i18n="th1">Servicio</th><th scope="col" data-i18n="th2">Frecuencia</th><th scope="col" data-i18n="th3">Lo que tú ves</th></tr></thead>
+      <caption class="sr" data-i18n="svccap">Desarrollo, representación del propietario y operación de villas</caption>
+      <thead><tr><th scope="col" data-i18n="th1">Mandato</th><th scope="col" data-i18n="th2">Responsabilidad</th><th scope="col" data-i18n="th3">Visibilidad del propietario</th></tr></thead>
       <tbody>
-        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g1">Huéspedes</th></tr>
-        <tr><td data-i18n="s1">Fotografía y anuncios en Airbnb, VRBO y reserva directa</td><td data-i18n="s1f">Al inicio y por temporada</td><td data-i18n="s1v">Enlaces a cada anuncio</td></tr>
-        <tr><td data-i18n="s2">Atención a huéspedes en español e inglés</td><td data-i18n="s2f">Durante cada estadía</td><td data-i18n="s2v">Historial completo de mensajes</td></tr>
-        <tr><td data-i18n="s3">Llegada con códigos y bienvenida</td><td data-i18n="s3f">Cada llegada</td><td data-i18n="s3v">Registro de accesos</td></tr>
-        <tr><td data-i18n="s4">Concierge: chef, tours, transporte</td><td data-i18n="s4f">Bajo pedido</td><td data-i18n="s4v">Reservas registradas en tu portal</td></tr>
-        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g2">La casa</th></tr>
-        <tr><td data-i18n="s5">Limpieza de salida con checklist por habitación</td><td data-i18n="s5f">Cada estadía</td><td data-i18n="s5v">Fotos de la casa lista</td></tr>
-        <tr><td data-i18n="s6">Piscina, jardín y terrazas</td><td data-i18n="s6f">Diario y semanal</td><td data-i18n="s6v">Parte con mediciones</td></tr>
-        <tr><td data-i18n="s7">Mantenimiento preventivo: A/C, bombas, cerraduras</td><td data-i18n="s7f">Mensual</td><td data-i18n="s7v">Bitácora con fotos y facturas</td></tr>
-        <tr><td data-i18n="s8">Emergencias y reparaciones</td><td data-i18n="s8f">En cuanto ocurren</td><td data-i18n="s8v">Aviso inmediato; tú apruebas sobre tu límite</td></tr>
-        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g3">Ingresos</th></tr>
-        <tr><td data-i18n="s9">Precio dinámico por temporada y eventos</td><td data-i18n="s9f">Diario</td><td data-i18n="s9v">Tarifa por noche en tu portal</td></tr>
-        <tr><td data-i18n="s10">Cobros, pagos a proveedores e impuestos locales</td><td data-i18n="s10f">Mensual</td><td data-i18n="s10v">Estado de cuenta detallado</td></tr>
-        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g4">Tú</th></tr>
-        <tr><td data-i18n="s11">Portal del dueño: calendario, reservas y gastos</td><td data-i18n="s11f">Siempre</td><td data-i18n="s11v">Todo, en tiempo real</td></tr>
-        <tr><td data-i18n="s12">Bloqueo de fechas para tu propio uso</td><td data-i18n="s12f">Cuando quieras</td><td data-i18n="s12v">Casa preparada a tu llegada</td></tr>
-        <tr><td data-i18n="s13">Revisión de resultados contigo</td><td data-i18n="s13f">Trimestral</td><td data-i18n="s13v">Llamada y plan de la temporada</td></tr>
+        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g1">Develop</th></tr>
+        <tr><td data-i18n="s1">Concepto, factibilidad y brief del propietario</td><td data-i18n="s1f">Definir la visión y el uso real</td><td data-i18n="s1v">Decisiones, alcance y presupuesto base</td></tr>
+        <tr><td data-i18n="s2">Diseño, arquitectura e interiores</td><td data-i18n="s2f">Coordinar el equipo creativo y técnico</td><td data-i18n="s2v">Hitos de aprobación documentados</td></tr>
+        <tr><td data-i18n="s3">Construcción y remodelación</td><td data-i18n="s3f">Ejecutar con control de calidad</td><td data-i18n="s3v">Avance, costos, cambios y evidencia</td></tr>
+        <tr><td data-i18n="s4">Equipamiento y entrega</td><td data-i18n="s4f">Preparar la residencia para operar</td><td data-i18n="s4v">Inventario, garantías y manuales</td></tr>
+        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g2">Represent</th></tr>
+        <tr><td data-i18n="s5">Owner representation</td><td data-i18n="s5f">Ser la voz del propietario</td><td data-i18n="s5v">Un responsable frente a todas las partes</td></tr>
+        <tr><td data-i18n="s6">Presupuesto, contratos y compras</td><td data-i18n="s6f">Proteger capital y condiciones</td><td data-i18n="s6v">Aprobaciones y trazabilidad</td></tr>
+        <tr><td data-i18n="s7">Calidad, cronograma y riesgos</td><td data-i18n="s7f">Verificar antes de aceptar</td><td data-i18n="s7v">Reportes con fotos y acciones</td></tr>
+        <tr><td data-i18n="s8">Cierre, punch list y transición</td><td data-i18n="s8f">Entregar sin vacíos operativos</td><td data-i18n="s8v">Pendientes, responsables y fechas</td></tr>
+        <tr class="grp"><th scope="rowgroup" colspan="3" data-i18n="g3">Operate</th></tr>
+        <tr><td data-i18n="s9">Mantenimiento preventivo y proyectos</td><td data-i18n="s9f">Proteger el activo todos los días</td><td data-i18n="s9v">Bitácora, evidencias y alertas</td></tr>
+        <tr><td data-i18n="s10">Staff, housekeeping y administración</td><td data-i18n="s10f">Sostener el estándar de la casa</td><td data-i18n="s10v">Calendario, gastos y resultados</td></tr>
+        <tr><td data-i18n="s11">Hospitalidad y gestión de huéspedes</td><td data-i18n="s11f">Operar cada llegada y estadía</td><td data-i18n="s11v">Preferencias, mensajes e incidentes</td></tr>
+        <tr><td data-i18n="s12">Private concierge</td><td data-i18n="s12f">Resolver sin trasladar coordinación</td><td data-i18n="s12v">Un canal y presupuesto consolidado</td></tr>
+        <tr><td data-i18n="s13">Private Retreats</td><td data-i18n="s13f">Producir experiencias completas</td><td data-i18n="s13v">Brief, programa y responsable único</td></tr>
       </tbody>
     </table>
   </div>
@@ -625,8 +857,8 @@ footer .brand{color:var(--on-ink)}
 <section class="report" id="reportes" aria-labelledby="rep-t">
   <div class="wrap">
     <div>
-      <h2 id="rep-t" data-i18n="rept">Sabes todo sin tener que preguntar</h2>
-      <p class="lede" style="margin-top:22px" data-i18n="replede">Cada mes recibes un estado de cuenta de una página. Noches, ingresos, gastos y lo que se hizo en la casa, con fotos y facturas.</p>
+      <h2 id="rep-t" data-i18n="rept">Representamos al propietario, no al proveedor.</h2>
+      <p class="lede" style="margin-top:22px" data-i18n="replede">Presupuesto, obra, mantenimiento, ingresos y decisiones quedan documentados. Tú conservas control sin convertirte en coordinador del proyecto o de la casa.</p>
       <ul class="points">
         <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="p1">Calendario de ocupación con tus fechas bloqueadas.</span></li>
         <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="p2">Cada gasto con su factura; nada se cobra sin respaldo.</span></li>
@@ -659,23 +891,62 @@ footer .brand{color:var(--on-ink)}
   </div>
 </section>
 
+<section class="developers" id="developers" aria-labelledby="developers-t">
+  <div class="wrap">
+    <div class="dev-head">
+      <div><h2 id="developers-t" data-i18n="devt">Construye con el operador ya sentado en la mesa.</h2></div>
+      <p class="lede" data-i18n="devlede">Para developers y propietarios que quieren crear una residencia extraordinaria sin heredar la complejidad de operarla. Pleamar convierte el proyecto en una casa lista para vivir, recibir y formar parte de una colección privada.</p>
+    </div>
+    <div class="dev-path">
+      <article class="dev-step"><span class="num">01</span><h3 data-i18n="dv1">Define</h3><p data-i18n="dv1p">Programa, huésped objetivo, estándares operativos y decisiones que afectan el uso real de la casa.</p></article>
+      <article class="dev-step"><span class="num">02</span><h3 data-i18n="dv2">Represent</h3><p data-i18n="dv2p">Una voz para el propietario frente a diseño, construcción, compras, presupuesto y cronograma.</p></article>
+      <article class="dev-step"><span class="num">03</span><h3 data-i18n="dv3">Commission</h3><p data-i18n="dv3p">Punch list, garantías, inventario, personal, manuales y preparación antes de la primera llegada.</p></article>
+      <article class="dev-step"><span class="num">04</span><h3 data-i18n="dv4">Operate</h3><p data-i18n="dv4p">Mantenimiento, hospitality, concierge, rental strategy y experiencias bajo un estándar continuo.</p></article>
+    </div>
+    <div class="dev-value">
+      <div><h3 data-i18n="devvalue">Una ventaja para vender. Una solución para entregar.</h3><p class="lede" style="margin-top:18px" data-i18n="devvaluep">El developer puede ofrecer a sus compradores una residencia respaldada por operación profesional desde el primer día; el propietario recibe una sola relación en lugar de administrar una red de proveedores.</p></div>
+      <ul class="points"><li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="dvp1">Mayor confianza durante la venta y la entrega.</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="dvp2">Estándares compartidos sin borrar la identidad de cada casa.</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="dvp3">Elegibilidad para la Pleamar Private Collection después de la evaluación.</span></li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="circle" id="circle" aria-labelledby="circle-t">
+  <div class="wrap">
+    <div class="circle-head">
+      <div><h2 id="circle-t" data-i18n="circlet">Pleamar Private Circle. Acceso por relación.</h2></div>
+      <p class="lede" data-i18n="circlelede">Una comunidad privada de propietarios, developers, principals, family offices y aliados estratégicos que comparten una visión de largo plazo para residencias excepcionales en Costa Rica.</p>
+    </div>
+    <div class="circle-criteria">
+      <article class="criterion"><span class="num">01</span><h3 data-i18n="cc1">Introducción</h3><p data-i18n="cc1p">Referencia de un miembro, cliente, asesor o aliado; o una solicitud que podamos verificar.</p></article>
+      <article class="criterion"><span class="num">02</span><h3 data-i18n="cc2">Alineación</h3><p data-i18n="cc2p">Interés real en calidad, preservación del activo, hospitalidad y relaciones de largo plazo.</p></article>
+      <article class="criterion"><span class="num">03</span><h3 data-i18n="cc3">Capacidad</h3><p data-i18n="cc3p">Recursos, experiencia y sofisticación adecuados para el tipo de proyecto o relación propuesta.</p></article>
+      <article class="criterion"><span class="num">04</span><h3 data-i18n="cc4">Discreción</h3><p data-i18n="cc4p">Respeto por la privacidad, la debida diligencia y los estándares de la comunidad.</p></article>
+    </div>
+    <div class="circle-gate">
+      <article class="circle-track"><span class="platform-kicker" data-i18n="ct1k">Residences & developers</span><h3 data-i18n="ct1">Pleamar Private Collection</h3><p data-i18n="ct1p">El acceso nace de una relación activa con Pleamar y de una propiedad capaz de superar una evaluación de diseño, construcción, privacidad y operación.</p><ul><li data-i18n="ct1a">La membresía no se compra por separado</li><li data-i18n="ct1b">Cada casa debe alcanzar o superar el estándar Casa Caponera</li><li data-i18n="ct1c">La propiedad y sus principals pasan por admisión privada</li></ul></article>
+      <article class="circle-track"><span class="platform-kicker" data-i18n="ct2k">Private capital</span><h3 data-i18n="ct2">Capital y alianzas estratégicas</h3><p data-i18n="ct2p">Conversaciones privadas con principals, family offices y socios capaces de aportar capital paciente, criterio y relaciones relevantes.</p><ul><li data-i18n="ct2a">Experiencia o sofisticación verificable</li><li data-i18n="ct2b">Horizonte de inversión de largo plazo</li><li data-i18n="ct2c">Elegibilidad, debida diligencia y documentación legal</li></ul></article>
+    </div>
+    <div class="circle-action"><p data-i18n="circledisclaimer">La información de este sitio no constituye una oferta de valores ni una solicitud de inversión. Cualquier oportunidad se presentará de forma privada, únicamente a personas elegibles y sujeta a revisión legal, debida diligencia y documentación definitiva.</p><a class="btn" href="#evaluar"><span data-i18n="circlecta">Solicitar una introducción privada</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+  </div>
+</section>
+
 <section class="start" id="preguntas" aria-labelledby="start-t">
   <div class="wrap">
-    <h2 id="start-t" data-i18n="startt">Cómo empezamos</h2>
+    <h2 id="start-t" data-i18n="startt">Cómo comienza un mandato Pleamar</h2>
     <ol class="steps">
-      <li><h3 data-i18n="st1t">Evaluación</h3><p data-i18n="st1p">Visitamos la casa (o hacemos videollamada), revisamos su estado y te damos un estimado de ingresos por temporada.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
-      <li><h3 data-i18n="st2t">Preparación</h3><p data-i18n="st2p">Puesta a punto, inventario, fotografía profesional y anuncios. Tú apruebas todo antes de publicar.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
-      <li><h3 data-i18n="st3t">En línea</h3><p data-i18n="st3p">Tu villa recibe reservas y tú empiezas a recibir el parte. Nosotros nos encargamos del resto.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
+      <li><h3 data-i18n="st1t">Conversación privada</h3><p data-i18n="st1p">Entendemos la propiedad, el proyecto, las personas involucradas y el resultado que quieres proteger.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
+      <li><h3 data-i18n="st2t">Property or Project Review</h3><p data-i18n="st2p">Revisamos diseño, obra, operación, equipo y riesgos para determinar dónde Pleamar agrega más valor.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
+      <li><h3 data-i18n="st3t">Mandato y estándar</h3><p data-i18n="st3p">Definimos responsabilidad, alcance, controles y criterios de éxito antes de asumir el proyecto o la residencia.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
     </ol>
 
     <div class="faq">
-      <h2 data-i18n="faqt" style="font-size:clamp(2.2rem,4vw,3.25rem)">Preguntas de dueños</h2>
+      <h2 data-i18n="faqt" style="font-size:clamp(2.2rem,4vw,3.25rem)">Preguntas privadas</h2>
       <div>
-        <details><summary><span data-i18n="fq1">¿Cuánto cobran?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa1">Depende del tamaño y los servicios de tu casa. Lo verás por escrito en la evaluación, antes de firmar nada.</p></details>
-        <details><summary><span data-i18n="fq2">¿Puedo seguir usando mi casa?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa2">Sí. Bloqueas tus fechas desde el portal y la casa estará limpia y lista cuando llegues.</p></details>
-        <details><summary><span data-i18n="fq3">¿Qué pasa si algo se daña?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa3">Lo resolvemos de inmediato y te avisamos con fotos. Tú defines un monto límite: cualquier reparación por encima de él necesita tu aprobación.</p></details>
-        <details><summary><span data-i18n="fq4">¿En qué zonas trabajan?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa4">Escríbenos con la ubicación de tu casa y te confirmamos si la cubrimos.</p></details>
-        <details><summary><span data-i18n="fq5">¿Cómo veo lo que pasa en mi casa?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa5">En el portal del dueño: calendario, reservas, mensajes, gastos y bitácora de mantenimiento, en tiempo real. Además, el estado de cuenta mensual.</p></details>
+        <details><summary><span data-i18n="fq1">¿Pueden entrar a un proyecto que ya comenzó?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa1">Sí. Primero hacemos un Project Review para identificar decisiones pendientes, riesgos, contratos y brechas antes de proponer un mandato.</p></details>
+        <details><summary><span data-i18n="fq2">¿Puede un developer ofrecer Pleamar a sus compradores?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa2">Sí. Podemos estructurar una alianza para apoyar diseño operativo, entrega, owner representation y operación posterior sin reemplazar la identidad del proyecto.</p></details>
+        <details><summary><span data-i18n="fq3">¿Todas las casas entran a la Private Collection?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa3">No. La propiedad debe superar una evaluación de arquitectura, privacidad, sistemas, comodidad, mantenimiento y capacidad de servicio.</p></details>
+        <details><summary><span data-i18n="fq4">¿En qué zonas trabajan?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa4">Trabajamos en Guanacaste de forma selectiva. La ubicación, el alcance y nuestra capacidad de responder por el estándar determinan la aceptación.</p></details>
+        <details><summary><span data-i18n="fq5">¿Cómo se ingresa al Private Circle?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa5">Por referencia o solicitud privada, seguida de verificación, conversación de fit y, cuando corresponde, debida diligencia. Cumplir los requisitos no garantiza admisión.</p></details>
       </div>
     </div>
   </div>
@@ -684,39 +955,39 @@ footer .brand{color:var(--on-ink)}
 <section class="ink eval" id="evaluar" aria-labelledby="eval-t">
   <div class="wrap">
     <div>
-      <h2 id="eval-t" data-i18n="evalt">Evaluemos tu villa</h2>
-      <p class="lede" style="margin-top:22px" data-i18n="evallede">Cuéntanos de tu casa y te respondemos con los siguientes pasos.</p>
+      <h2 id="eval-t" data-i18n="evalt">Cuéntanos qué estás creando o protegiendo.</h2>
+      <p class="lede" style="margin-top:22px" data-i18n="evallede">Comenzamos con una conversación privada para determinar si existe fit mutuo.</p>
       <div class="eval-points">
-        <div><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="e1">Recorrido por tu casa, en persona o por video.</span></div>
-        <div><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="e2">Estimado de ingresos por temporada.</span></div>
-        <div><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="e3">Te atendemos en español o inglés.</span></div>
+        <div><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="e1">Revisión personal, no respuesta automática.</span></div>
+        <div><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="e2">Confidencialidad desde el primer contacto.</span></div>
+        <div><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="e3">Atención en español o inglés.</span></div>
       </div>
     </div>
     <form id="eval" novalidate>
-      <label><span class="field-label" data-i18n="fn">Nombre</span><input name="name" autocomplete="name" required aria-describedby="err-name"><span class="err" id="err-name" aria-live="polite"></span></label>
-      <label><span class="field-label" data-i18n="fe">Correo</span><input name="email" type="email" autocomplete="email" required aria-describedby="err-email"><span class="err" id="err-email" aria-live="polite"></span></label>
+      <label><span class="field-label" data-i18n="fn">Nombre · requerido</span><input name="name" autocomplete="name" required aria-describedby="err-name"><span class="err" id="err-name" aria-live="polite"></span></label>
+      <label><span class="field-label" data-i18n="fe">Correo · requerido</span><input name="email" type="email" autocomplete="email" required aria-describedby="err-email"><span class="err" id="err-email" aria-live="polite"></span></label>
       <label><span class="field-label" data-i18n="fw">WhatsApp (opcional)</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel"><span class="err"></span></label>
-      <label><span class="field-label" data-i18n="q1">¿Dónde está?</span>
+      <label><span class="field-label" data-i18n="q1">Ubicación</span>
         <select name="loc" id="f-loc">
           <option value="Tamarindo">Tamarindo</option><option value="Playa Langosta">Playa Langosta</option><option value="Playa Grande">Playa Grande</option><option value="Flamingo">Flamingo</option><option value="Conchal">Conchal</option><option value="Otro" data-i18n="other">Otro lugar</option>
         </select><span class="err"></span></label>
-      <label><span class="field-label" data-i18n="q2">Habitaciones</span>
-        <select name="beds" id="f-beds"><option>2</option><option>3</option><option selected>4</option><option>5</option><option value="6+">6+</option></select><span class="err"></span></label>
-      <fieldset><legend class="field-label" data-i18n="fr">¿Ya se renta?</legend>
+      <label><span class="field-label" data-i18n="q2">¿Qué necesitas?</span>
+        <select name="beds" id="f-beds"><option value="develop" data-i18n="qi1">Diseñar o construir</option><option value="remodel" data-i18n="qi2">Remodelar</option><option value="represent" data-i18n="qi3">Owner representation</option><option value="operate" selected data-i18n="qi4">Operar una villa</option><option value="experience" data-i18n="qi5">Concierge o retreat</option><option value="capital" data-i18n="qi6">Alianza estratégica</option></select><span class="err"></span></label>
+      <fieldset><legend class="field-label" data-i18n="fr">Etapa actual</legend>
         <div class="seg">
-          <label><input type="radio" name="rented" value="si" checked><span data-i18n="fr1">Sí</span></label>
-          <label><input type="radio" name="rented" value="no"><span data-i18n="fr2">Todavía no</span></label>
+          <label><input type="radio" name="rented" value="existing" checked><span data-i18n="fr1">Casa existente</span></label>
+          <label><input type="radio" name="rented" value="planning"><span data-i18n="fr2">En planificación</span></label>
           <label><input type="radio" name="rented" value="obra"><span data-i18n="fr3">En construcción</span></label>
         </div><span class="err"></span></fieldset>
-      <label class="full"><span class="field-label" data-i18n="fm">Algo que debamos saber (opcional)</span><textarea name="msg"></textarea></label>
+      <label class="full"><span class="field-label" data-i18n="fm">Cuéntanos del proyecto, la propiedad o la relación que imaginas</span><textarea name="msg"></textarea></label>
       <div class="form-foot full">
-        <button class="btn" type="submit"><span data-i18n="fsend">Solicitar evaluación</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
-        <small data-i18n="fpriv">Solo usamos tus datos para responderte.</small>
+        <button class="btn" type="submit"><span data-i18n="fsend">Solicitar conversación privada</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+        <small><span data-i18n="fpriv">La información permanece en tu dispositivo hasta que confirmes el envío en tu aplicación de correo.</span> <a href="mailto:aletamacosta@gmail.com">aletamacosta@gmail.com</a></small>
       </div>
       <div class="done" role="status" tabindex="-1" id="done">
         <svg class="ic mark-done" style="width:40px;height:40px" aria-hidden="true"><use href="#i-done"/></svg>
-        <h3 data-i18n="dt">Recibido</h3>
-        <p data-i18n="dp">Gracias. Te escribiremos pronto para coordinar la evaluación de tu villa.</p>
+        <h3 data-i18n="dt">Correo preparado</h3>
+        <p data-i18n="dp">Se abrió un borrador dirigido a Pleamar. Revísalo y presiona enviar desde tu aplicación de correo.</p>
       </div>
     </form>
   </div>
@@ -727,9 +998,9 @@ footer .brand{color:var(--on-ink)}
   <div class="wrap">
     <div>
       <a class="brand" href="#top"><svg aria-hidden="true"><use href="#i-wave"/></svg>PLEAMAR</a>
-      <p style="margin-top:12px" data-i18n="foot1">Administración de villas · Tamarindo, Guanacaste, Costa Rica</p>
+      <p style="margin-top:12px" data-i18n="foot1">Luxury Residential Developer · Owner's Representative · Private Villa Operator</p>
     </div>
-    <p><span data-i18n="foot2">[Correo y WhatsApp por confirmar]</span><br>© <span id="yr">2026</span> Pleamar</p>
+    <p><a href="mailto:aletamacosta@gmail.com">aletamacosta@gmail.com</a><br>© <span id="yr">2026</span> Pleamar</p>
   </div>
 </footer>
 
@@ -738,21 +1009,45 @@ footer .brand{color:var(--on-ink)}
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const TZ = 'America/Costa_Rica', LAT = 10.2993, LON = -85.8371;
+  const CONTACT_EMAIL = 'aletamacosta@gmail.com';
 
   /* ---------- i18n: Spanish lives in the HTML, English here ---------- */
   const EN = {
-    skip:'Skip to content', nav1:'A day of care', nav2:'The villa', nav3:'Services', nav4:'Reports', nav5:'Questions', nav6:'Retreats', navcta:'Evaluate my property',
+    skip:'Skip to content', nav1:'Develop', nav2:'Represent', nav3:'Operate', nav4:'Private circle', nav5:'Questions', nav6:'Private retreats', navcta:'Private conversation',
     heroalt:'Infinity lap pool in front of a three-level contemporary villa in Tamarindo',
-    h1:'Your villa, immaculate. <em>Every single day.</em>',
-    herolede:'Guests, housekeeping, maintenance and money. You just read the report.',
-    q1:'Where is it?', q2:'Bedrooms', other:'Somewhere else', qbtn:'Evaluate my property',
-    boardt:'Today’s report · Villa Tamarindo', b1:'Sunset', b2:'Pool checked', b2s:'pH 7.4', b3:'Checkout cleaning', b3v:'In progress', b4:'12 guests arriving', b5:'Airbnb rating', b5s:'36 reviews',
-    boardfoot:'Sunset calculated live for Tamarindo. Rating is real, from Airbnb. Everything else is a sample report.',
-    dayt:'A day in our care', daylede:'Drag the day line. Every hour has someone accountable, and it’s logged in your portal. The dashed line is the current time in Costa Rica.',
+    h1:'We create the residence. <em>We operate the experience.</em>',
+    herolede:'Luxury residential development, owner representation and private villa operations in Guanacaste, under one accountable team.',
+    q1:'Location', q2:'What do you need?', other:'Somewhere else', qbtn:'Start a conversation',
+    qi1:'Design or build', qi2:'Remodel', qi3:'Owner representation', qi4:'Operate a villa', qi5:'Concierge or retreat', qi6:'Strategic partnership',
+    boardt:'Casa Caponera · The standard', b1:'Designed by us', b1v:'One vision', b2:'Built by us', b2v:'From origin', b3:'Operated by us', b3v:'Every day', b4:'Airbnb rating', b4s:'36 reviews', b5:'Guest Favorite',
+    boardfoot:'Casa Caponera proves the full cycle: design, construction, operations and hospitality.',
+    platformk:'One company. One accountability.', platformt:'From first concept to every arrival.', platformlede:'We do not hand over a house and disappear. We create the asset, represent the owner and operate the residence under the same vision that shaped it.',
+    pd1:'Develop', pd1p:'We design, build and remodel extraordinary residences made to live well, host beautifully and preserve value.', pd1a:'Residential design and development', pd1b:'Construction and remodeling', pd1c:'Interiors, furnishing and handover',
+    pd2:'Represent', pd2p:'We protect the owner’s intent, time, capital and asset across every party involved in the project.', pd2a:'Owner representation', pd2b:'Budget, quality and schedule', pd2c:'Procurement, contracts and site control',
+    pd3:'Operate', pd3p:'We operate each villa as private hospitality: maintenance, team, guests, concierge and experiences.', pd3a:'Villa operations and maintenance', pd3b:'Private hospitality and concierge', pd3c:'Private Retreats →', plstrong:'One vision. One accountable team.', plcopy:'Continuity removes the gaps between those who design, those who build and those who must make the home work.',
+    dayt:'Visible operations. Real accountability.', daylede:'Private hospitality cannot depend on improvisation. Every hour has an owner, every action leaves evidence and the principal keeps visibility without managing the home.',
     slider:'Time of day', lg1:'Done', lg2:'In progress', lg3:'Scheduled',
-    villat:'The proof is the house', villalede:'An ocean-view villa with a rooftop and an infinity lap pool, a short walk from downtown Tamarindo. This is what a house that is never neglected looks like, and what we do to keep it that way.',
+    villat:'The standard was not selected. We created it.', villalede:'We designed Casa Caponera, led its construction and now operate it. The home proves that one vision can sustain architecture, maintenance and five-star hospitality.',
     f1:'Bedrooms', f2:'Beds', f3:'Bathrooms', f4:'Guests', f5:'36 reviews on Airbnb',
-    src:'Facts and photos from the villa’s public Airbnb listing. Under each photo, its care routine.',
+    src:'Facts and photos from the villa’s public Airbnb listing. Under each photo, its care routine.', srclink:'View all 36 verified reviews ↗',
+    storyk:'The story behind the standard', storyt:'Before it was a home, it was a promise.',
+    storyp1:'I found the right property, sold it, designed the home and took responsibility for building it because the concept could not be lost between one decision and the next.',
+    storyp2:'Casa Caponera began with a relationship of trust: protecting the capital of someone considered family and turning one complete vision—land, architecture, materials, operations and experience—into a verifiable reality.',
+    storyq:'“The smell of Tamarindo means home in my mind. Everywhere else, to me, is travel.”', storycite:'Founder · Casa Caponera',
+    xpt:'Luxury should not feel complicated. It should feel effortless.',
+    xplede:'From the moment you decide to come to Costa Rica, every part of the experience is carefully considered. Transportation, arrival, activities, dining, family needs, local experiences and every detail of your stay can be planned and coordinated before you even arrive.',
+    xpstrong:'You arrive, settle in, and enjoy Costa Rica.',
+    xpi1:'We take the time to understand who is coming, what they enjoy, how they travel and what they expect. Families, couples, children and different generations can each have an experience designed around them, while still sharing the same home and the same extraordinary destination.',
+    xpi2:'Once you arrive, the goal is simple: you should not have to figure anything out. Everything is already taken care of.',
+    xpi3:'Our vision is to create a level of service where Costa Rica begins to feel like your own place—somewhere you know, somewhere you trust, and somewhere you eventually do not want to leave.',
+    xp1t:'More Than a Stay', xp1p:'We believe the right luxury experience can change the way someone sees a destination. A guest may arrive for a vacation and discover something much bigger: a lifestyle they could imagine making part of their life.', xp1e:'“I do not just want to come here. I want to have a place here.”',
+    xp2t:'From Guest to Owner', xp2p:'Someone who experiences the property, the service and the lifestyle firsthand can understand something that cannot be communicated through photographs alone: what it feels like to own and operate a home at this level.', xp2e:'A guest can become an owner. An owner can become an investor.',
+    xp3t:'A Natural Relationship', xp3p:'That creates a natural relationship between the guest, the property and the opportunity: a network of people who already understand the product, the lifestyle and the value behind it.', xp3e:'The experience first. The relationship follows.',
+    xpnk:'The long-term vision', xpnt:'Build a collection around one shared standard.',
+    xpnp1:'Some clients may already own a property that needs to be elevated to that standard. Others may want to build something entirely new. We can help with either.',
+    xpnp2:'From evaluating an existing property, identifying what is missing and remodeling it, to designing and developing a home from the ground up, our role is to bring the entire concept together: design, construction, project management, financial control, legal coordination, operations, guest experience and villa management.',
+    xpnp3:'Everything is built around one objective: create a property that people want to experience, a lifestyle they want to return to, and an investment they want to own.',
+    xpf:'Casa Caponera is the beginning of that vision. The house is the first expression. The experience is the proof. And the people who experience it are the beginning of the network.',
     a1:'The whole villa with its infinity lap pool among the greenery', a2:'Double-height living room with windows facing the sunset', a3:'Gourmet kitchen with wooden island and steel appliances', a4:'Primary suite with king bed facing the sunset', a5:'Freestanding tub in a white marble bathroom', a6:'Rooftop terrace with outdoor lounge and bay view', a7:'The villa lit up at night with the pool glowing', a8:'Aerial view of Tamarindo at sunset with the ocean beyond',
     c1:'The villa and its lap pool', k1:'Water chemistry tested every morning; pump and filters checked weekly.',
     c2:'Living room over the Pacific', k2:'Windows washed at every checkout; A/C filters replaced monthly.',
@@ -769,42 +1064,65 @@ footer .brand{color:var(--on-ink)}
     rg3:'Nourishment', rs9:'Private chef with a custom healthy menu', rw6:'Gourmet kitchen', rs10:'Juices, bowls and seasonal breakfasts', rw7:'Dining room', rs11:'Mindful Costa Rican cooking class',
     rg4:'Nature & logistics', rs12:'Sunrise beach walk', rw8:'Tamarindo Beach', rs13:'Gentle surf for beginners', rs14:'Sunset catamaran', rw9:'Tamarindo Bay', rs15:'Liberia airport transfers', rw10:'Round trip',
     rdt:'A retreat day', rdtag:'Sample program', rd1:'Sunrise yoga', rd2:'Chef’s breakfast', rd3:'Breathwork and cold plunge', rd4:'Beach or free time', rd5:'Seasonal lunch', rd6:'Massage in your suite', rd7:'Sunset meditation', rd8:'Dinner and sound healing',
-    rpt:'Plan your retreat', rp1:'The whole private villa: 4 suites, rooftop and lap pool.', rp2:'A program built with you before you arrive.', rp3:'One contact for everything during your stay.',
+    rpt:'Host your retreat at Casa Caponera', rp1:'A private home for up to 12 guests, with ocean views and a 25-yard pool.', rp2:'Sauna, cold plunge, massage, sound healing and chef coordinated in one plan.', rp3:'Dates, lodging and programming shaped around your group.',
     rfg:'Group size', rfg1:'4 to 6 people', rfg2:'7 to 9 people', rfg3:'10 to 12 people', rfd:'Approximate month', rfi:'What interests you?', ri1:'Yoga', ri2:'Meditation', ri3:'Massage', ri4:'Cacao', ri5:'Healthy chef',
-    rfm:'Tell us about your group (optional)', rfsend:'Plan my retreat', rdp:'Thank you. We’ll be in touch soon with a program proposal for your group.',
-    svct:'Everything, in one table', svclede:'No packages, no fine print: what we do, how often, and what you see.', svccap:'Management services, frequency, and what the owner sees',
-    th1:'Service', th2:'Frequency', th3:'What you see',
-    g1:'Guests', s1:'Photography and listings on Airbnb, VRBO and direct booking', s1f:'At launch and each season', s1v:'Links to every listing',
-    s2:'Guest support in English and Spanish', s2f:'Throughout every stay', s2v:'Full message history', s3:'Keypad check-in and welcome', s3f:'Every arrival', s3v:'Entry log',
-    s4:'Concierge: private chef, tours, transport', s4f:'On request', s4v:'Bookings logged in your portal',
-    g2:'The house', s5:'Checkout cleaning with a room-by-room checklist', s5f:'Every stay', s5v:'Photos of the ready house',
-    s6:'Pool, garden and terraces', s6f:'Daily and weekly', s6v:'Report with readings', s7:'Preventive maintenance: A/C, pumps, locks', s7f:'Monthly', s7v:'Log with photos and invoices',
-    s8:'Emergencies and repairs', s8f:'As soon as they happen', s8v:'Immediate notice; you approve above your limit',
-    g3:'Revenue', s9:'Dynamic pricing by season and events', s9f:'Daily', s9v:'Nightly rate in your portal',
-    s10:'Collections, vendor payments and local taxes', s10f:'Monthly', s10v:'Itemized statement',
-    g4:'You', s11:'Owner portal: calendar, bookings and expenses', s11f:'Always', s11v:'Everything, in real time',
-    s12:'Block dates for your own stays', s12f:'Whenever you like', s12v:'House ready when you arrive', s13:'Results review with you', s13f:'Quarterly', s13v:'Call and plan for the season',
-    rept:'You know everything without having to ask', replede:'Every month you get a one-page statement. Nights, income, expenses and what was done in the house, with photos and invoices.',
+    rfm:'Tell us about your group (optional)', rfsend:'Check availability', rdp:'Thank you. We’ll be in touch soon with availability and a recommended program for your group.',
+    exttag:'For private villas', extt:'Bring a Pleamar retreat to your villa', extlede:'Casa Caponera is our benchmark. If you already have a villa and a management team, we can add wellness and concierge production, provided the property meets or exceeds that standard of luxury, privacy and operations.',
+    ext1:'A Property Fit Review against the Casa Caponera standard: space, access, kitchen, amenities and service.', ext2:'Programming scaled to the number of guests, nights and selected experiences.', ext3:'We integrate with your existing property manager or staff.',
+    xfloc:'Property location', xfurl:'Property link or photo folder (optional)', xfbeds:'Bedrooms', xfg4:'13 to 16 people', xfg5:'17 or more', xfnights:'Estimated length', xfn1:'2 to 3 nights', xfn2:'4 to 5 nights', xfn3:'6 nights or more',
+    xfmgmt:'Current management', xfm1:'I have a property manager', xfm2:'I have my own staff', xfm3:'I manage it myself', xfa:'Available amenities', xa1:'Pool', xa2:'Ocean or nature view', xa3:'Practice space', xa4:'Chef-ready kitchen', xa5:'Massage area',
+    xfs:'Services you are interested in', xs1:'Full retreat production', xs2:'Private chef', xs3:'Wellness facilitators', xs4:'Transportation & experiences', xfm:'Tell us about the property and the retreat you imagine', xfsend:'Request a Property Fit Review', xdp:'Thank you. We’ll review the details and contact you to confirm whether the property is a fit for Pleamar.',
+    svct:'Three functions. One accountability.', svclede:'The structure preserves continuity from development through the private operation of the residence.', svccap:'Development, owner representation and villa operations',
+    th1:'Mandate', th2:'Accountability', th3:'Owner visibility',
+    g1:'Develop', s1:'Concept, feasibility and owner brief', s1f:'Define the vision and real use', s1v:'Decisions, scope and base budget',
+    s2:'Design, architecture and interiors', s2f:'Coordinate the creative and technical team', s2v:'Documented approval milestones', s3:'Construction and remodeling', s3f:'Execute with quality control', s3v:'Progress, costs, changes and evidence',
+    s4:'Furnishing and handover', s4f:'Prepare the residence to operate', s4v:'Inventory, warranties and manuals',
+    g2:'Represent', s5:'Owner representation', s5f:'Act as the owner’s voice', s5v:'One accountable lead across every party',
+    s6:'Budget, contracts and procurement', s6f:'Protect capital and terms', s6v:'Approvals and traceability', s7:'Quality, schedule and risk', s7f:'Verify before accepting', s7v:'Reports with photos and actions',
+    s8:'Closeout, punch list and transition', s8f:'Hand over without operational gaps', s8v:'Open items, owners and dates',
+    g3:'Operate', s9:'Preventive maintenance and projects', s9f:'Protect the asset every day', s9v:'Logs, evidence and alerts',
+    s10:'Staff, housekeeping and administration', s10f:'Sustain the home’s standard', s10v:'Calendar, expenses and results',
+    s11:'Hospitality and guest management', s11f:'Operate every arrival and stay', s11v:'Preferences, messages and incidents',
+    s12:'Private concierge', s12f:'Resolve without passing on coordination', s12v:'One channel and one consolidated budget', s13:'Private Retreats', s13f:'Produce complete experiences', s13v:'Brief, program and one accountable lead',
+    rept:'We represent the owner, not the vendor.', replede:'Budget, construction, maintenance, revenue and decisions remain documented. You keep control without becoming the project or home coordinator.',
     p1:'Occupancy calendar with your blocked dates.', p2:'Every expense with its invoice; nothing is charged without backup.', p3:'Monthly deposit to your account.',
     stmtt:'Statement · March', tag:'Illustrative example', calaria:'March: 24 nights booked, 3 owner nights, 4 nights open',
     l1:'Booked · 24', l2:'Owner stay · 3', l3:'Open · 4', ledcap:'Sample month summary',
     r1:'Booking income', r2:'Management commission', r3:'Cleaning and laundry', r4:'Maintenance (A/C filters, pump)', r5:'Deposit to owner',
-    stmtnote:'Made-up figures to show the format. Your real estimate comes from your property evaluation.',
-    startt:'How we start', st1t:'Evaluation', st1p:'We visit the house (or video call), review its condition and give you a revenue estimate by season.',
-    st2t:'Preparation', st2p:'Tune-up, inventory, professional photography and listings. You approve everything before it goes live.',
-    st3t:'Live', st3p:'Your villa starts taking bookings and you start getting the report. We handle the rest.',
-    faqt:'Owner questions',
-    fq1:'What do you charge?', fa1:'It depends on the size and services of your house. You’ll see it in writing at the evaluation, before you sign anything.',
-    fq2:'Can I still use my house?', fa2:'Yes. Block your dates in the portal and the house will be clean and ready when you arrive.',
-    fq3:'What if something breaks?', fa3:'We fix it right away and notify you with photos. You set a spending limit: any repair above it needs your approval.',
-    fq4:'Which areas do you cover?', fa4:'Send us your home’s location and we’ll confirm whether we cover it.',
-    fq5:'How do I see what’s happening at my house?', fa5:'In the owner portal: calendar, bookings, messages, expenses and maintenance log, in real time. Plus the monthly statement.',
-    evalt:'Let’s evaluate your villa', evallede:'Tell us about your house and we’ll reply with next steps.',
-    e1:'A walkthrough of your house, in person or by video.', e2:'Revenue estimate by season.', e3:'We work in English or Spanish.',
-    fn:'Name', fe:'Email', fw:'WhatsApp (optional)', fr:'Is it rented now?', fr1:'Yes', fr2:'Not yet', fr3:'Under construction',
-    fm:'Anything we should know (optional)', fsend:'Request evaluation', fpriv:'We only use your details to reply to you.',
-    dt:'Received', dp:'Thank you. We’ll be in touch soon to schedule your villa’s evaluation.',
-    foot1:'Villa management · Tamarindo, Guanacaste, Costa Rica', foot2:'[Email and WhatsApp to be confirmed]'
+    stmtnote:'Made-up figures to show the format. Your real estimate comes from your property or project review.',
+    devt:'Build with the operator already at the table.', devlede:'For developers and owners creating an extraordinary residence without inheriting the complexity of operating it. Pleamar turns the project into a home ready to live in, host and join a private collection.',
+    dv1:'Define', dv1p:'Program, target guest, operating standards and the decisions that shape how the home actually works.',
+    dv2:'Represent', dv2p:'One voice for the owner across design, construction, procurement, budget and schedule.',
+    dv3:'Commission', dv3p:'Punch list, warranties, inventory, staffing, manuals and preparation before the first arrival.',
+    dv4:'Operate', dv4p:'Maintenance, hospitality, concierge, rental strategy and experiences under one continuous standard.',
+    devvalue:'A sales advantage. A delivery solution.', devvaluep:'The developer can offer buyers a residence backed by professional operations from day one; the owner receives one accountable relationship instead of managing a web of vendors.',
+    dvp1:'Greater confidence through sale and handover.', dvp2:'Shared standards without erasing each home’s identity.', dvp3:'Eligibility for the Pleamar Private Collection after review.',
+    circlet:'Pleamar Private Circle. Access through relationship.', circlelede:'A private community of owners, developers, principals, family offices and strategic partners who share a long-term vision for exceptional residences in Costa Rica.',
+    cc1:'Introduction', cc1p:'A referral from a member, client, adviser or partner—or an application we can verify.',
+    cc2:'Alignment', cc2p:'A real commitment to quality, asset preservation, hospitality and long-term relationships.',
+    cc3:'Capacity', cc3p:'Resources, experience and sophistication appropriate to the proposed project or relationship.',
+    cc4:'Discretion', cc4p:'Respect for privacy, due diligence and the standards of the community.',
+    ct1k:'Residences & developers', ct1:'Pleamar Private Collection', ct1p:'Access begins with an active Pleamar relationship and a property capable of passing a review of design, construction, privacy and operations.',
+    ct1a:'Membership is not sold separately', ct1b:'Every home must meet or exceed the Casa Caponera standard', ct1c:'The property and its principals undergo private admission',
+    ct2k:'Private capital', ct2:'Capital & strategic partnerships', ct2p:'Private conversations with principals, family offices and partners able to contribute patient capital, judgment and relevant relationships.',
+    ct2a:'Verifiable experience or sophistication', ct2b:'Long-term investment horizon', ct2c:'Eligibility, due diligence and legal documentation',
+    circledisclaimer:'The information on this site is not an offer of securities or a solicitation to invest. Any opportunity will be presented privately, only to eligible persons, and will remain subject to legal review, due diligence and definitive documentation.',
+    circlecta:'Request a private introduction',
+    startt:'How a Pleamar mandate begins', st1t:'Private conversation', st1p:'We understand the property, the project, the people involved and the outcome you want to protect.',
+    st2t:'Property or Project Review', st2p:'We review design, construction, operations, team and risk to determine where Pleamar adds the most value.',
+    st3t:'Mandate and standard', st3p:'We define accountability, scope, controls and success criteria before taking on the project or residence.',
+    faqt:'Private questions',
+    fq1:'Can you join a project already underway?', fa1:'Yes. We begin with a Project Review to identify open decisions, risks, contracts and gaps before proposing a mandate.',
+    fq2:'Can a developer offer Pleamar to buyers?', fa2:'Yes. We can structure a partnership around operational design, handover, owner representation and ongoing operations without replacing the project’s identity.',
+    fq3:'Does every home enter the Private Collection?', fa3:'No. The property must pass a review of architecture, privacy, systems, comfort, maintenance and service capacity.',
+    fq4:'Which areas do you serve?', fa4:'We work selectively across Guanacaste. Location, scope and our ability to stand behind the standard determine acceptance.',
+    fq5:'How does someone enter the Private Circle?', fa5:'Through referral or private application, followed by verification, a fit conversation and, when relevant, due diligence. Meeting the criteria does not guarantee admission.',
+    evalt:'Tell us what you are creating or protecting.', evallede:'We begin with a private conversation to determine whether there is mutual fit.',
+    e1:'Personal review, not an automated response.', e2:'Confidentiality from the first contact.', e3:'Service in English or Spanish.',
+    fn:'Name · required', fe:'Email · required', fw:'WhatsApp (optional)', fr:'Current stage', fr1:'Existing home', fr2:'In planning', fr3:'Under construction',
+    fm:'Tell us about the project, property or relationship you imagine', fsend:'Request a private conversation', fpriv:'Your information stays on your device until you confirm sending it in your email app.',
+    dt:'Email ready', dp:'A draft addressed to Pleamar has opened. Review it and press send from your email app.',
+    foot1:'Luxury Residential Developer · Owner’s Representative · Private Villa Operator'
   };
   const EVENTS = [
     { m: 400,  img:'72', es:['Piscina','Limpieza, pH y cloro medidos y anotados en el parte.'], en:['Pool','Cleaned; pH and chlorine measured and logged in the report.'] },
@@ -853,7 +1171,9 @@ footer .brand{color:var(--on-ink)}
   }
   const SUNSET = Math.round(sunsetMinutes());
   EVENTS[6].m = SUNSET;
-  $('#sunset').textContent = $('#rt-sun').textContent = fmt(SUNSET);
+  const sunsetNode = $('#sunset'), retreatSunsetNode = $('#rt-sun');
+  if (sunsetNode) sunsetNode.textContent = fmt(SUNSET);
+  if (retreatSunsetNode) retreatSunsetNode.textContent = fmt(SUNSET);
   const tickClock = () => { $('#clock').textContent = 'CR ' + fmt(crMinutes()); placeNow(); };
 
   /* ---------- the day rail ---------- */
@@ -928,15 +1248,29 @@ footer .brand{color:var(--on-ink)}
     document.getElementById(f.getAttribute('aria-describedby')).textContent = msg;
     return !msg;
   }
-  $$('#eval, #retreat').forEach(form => {
+  $$('#eval').forEach(form => {
     ['name', 'email'].forEach(n => form[n].addEventListener('blur', () => check(form[n])));
     form.addEventListener('submit', ev => {
       ev.preventDefault();
       const bad = ['name', 'email'].map(n => form[n]).filter(f => !check(f));
       if (bad.length) { bad[0].focus(); return; }
-      form.querySelector('button[type=submit]').disabled = true;
-      // ponytail: no backend yet; wire to Formspree/your CRM endpoint here and only show success on a 2xx.
-      setTimeout(() => { form.classList.add('sent'); form.querySelector('.done').focus(); }, 600);
+      const submit = form.querySelector('button[type=submit]');
+      submit.disabled = true;
+      submit.querySelector('span').textContent = lang === 'en' ? 'Opening email…' : 'Abriendo correo…';
+      const data = new FormData(form);
+      const service = form.elements.beds.selectedOptions[0].textContent.trim();
+      const stage = form.querySelector('[name=rented]:checked')?.nextElementSibling?.textContent.trim() || '';
+      const subject = lang === 'en' ? `Private Pleamar inquiry — ${data.get('name')}` : `Solicitud privada Pleamar — ${data.get('name')}`;
+      const lines = lang === 'en'
+        ? [`Name: ${data.get('name')}`, `Email: ${data.get('email')}`, `WhatsApp: ${data.get('phone') || '—'}`, `Location: ${data.get('loc')}`, `Interest: ${service}`, `Current stage: ${stage}`, '', 'Message:', data.get('msg') || '—']
+        : [`Nombre: ${data.get('name')}`, `Correo: ${data.get('email')}`, `WhatsApp: ${data.get('phone') || '—'}`, `Ubicación: ${data.get('loc')}`, `Interés: ${service}`, `Etapa actual: ${stage}`, '', 'Mensaje:', data.get('msg') || '—'];
+      form.classList.add('mail-ready');
+      form.querySelector('.done').focus();
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
+      setTimeout(() => {
+        submit.disabled = false;
+        submit.querySelector('span').textContent = lang === 'en' ? EN.fsend : original.fsend;
+      }, 800);
     });
   });
 
