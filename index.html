@@ -3,9 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pleamar · Luxury Residential Development & Villa Operations</title>
+<title>ORBAYIS · Luxury Residential Development & Villa Operations</title>
 <meta name="description" content="Luxury residential development, owner representation and private villa operations in Guanacaste, Costa Rica.">
 <meta name="theme-color" content="#0A2328">
+<link rel="icon" type="image/png" href="img/orbayis-symbol-192.png">
+<link rel="apple-touch-icon" href="img/orbayis-symbol-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@300;400;600;700&family=Cormorant+Garamond:wght@300;500;600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -74,8 +76,8 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--sun);bac
 .nav{position:fixed;inset:0 0 auto;z-index:50;color:var(--on-ink);transition:background .35s var(--ease),box-shadow .35s var(--ease)}
 .nav.solid{background:rgba(10,35,40,.96);box-shadow:0 1px 0 var(--line-ink)}
 .nav .wrap{display:flex;align-items:center;gap:28px;height:76px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 1.6rem/1 var(--display);letter-spacing:.14em}
-.brand svg{width:30px;height:16px;color:var(--sun)}
+.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:600 1.6rem/1 var(--display);letter-spacing:.14em}
+.brand-mark{width:38px;height:38px;object-fit:contain;filter:drop-shadow(0 3px 8px rgba(0,0,0,.18))}
 .nav-links{display:flex;gap:26px;margin-left:auto;font-size:.9375rem;font-weight:500}
 .nav-links a{text-decoration:none;opacity:.86;padding:8px 0;transition:opacity .2s}
 .nav-links a:hover{opacity:1;text-decoration:underline}
@@ -91,6 +93,7 @@ select:focus,input:focus,textarea:focus{outline:none;border-color:var(--sun);bac
 .hero .wrap{position:relative;z-index:1;width:100%;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:clamp(28px,4vw,64px);align-items:end;padding-top:120px;padding-bottom:clamp(28px,5vh,56px)}
 .hero h1{font-size:clamp(3.3rem,7.4vw,6rem);line-height:.98;font-weight:600}
 .hero h1 em{font-style:normal;color:var(--sun)}
+.hero-lockup{width:clamp(170px,18vw,245px);height:auto;margin:0 0 22px;filter:drop-shadow(0 8px 20px rgba(0,0,0,.24))}
 .hero .lede{margin-top:22px;color:#D3E2DF;font-size:clamp(1.0625rem,1.4vw,1.25rem);max-width:none}
 .quick{margin-top:30px;display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;max-width:640px}
 .quick .field-label{color:#C9DBD8}
@@ -415,6 +418,8 @@ footer .brand{color:var(--on-ink)}
   .nav .wrap{height:64px;gap:12px}
   .nav .btn{display:none}
   .brand{font-size:1.35rem}
+  .brand-mark{width:34px;height:34px}
+  .hero-lockup{width:165px;margin-bottom:18px}
   .hero h1{font-size:clamp(2.9rem,13.5vw,4rem)}
   .hero::after{background:linear-gradient(180deg,rgba(10,35,40,.6) 0%,rgba(10,35,40,.15) 14%,rgba(10,35,40,.82) 34%,rgba(10,35,40,.96) 52%,var(--ink) 100%)}
   .hero-img{height:62%;object-position:60% 40%}
@@ -476,7 +481,7 @@ footer .brand{color:var(--on-ink)}
 
 <header class="nav" id="nav">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Pleamar, inicio"><svg aria-hidden="true"><use href="#i-wave"/></svg>PLEAMAR</a>
+    <a class="brand" href="#top" aria-label="ORBAYIS, inicio"><img class="brand-mark" src="img/orbayis-symbol-192.png" alt="" width="192" height="166">ORBAYIS</a>
     <nav class="nav-links" aria-label="Principal">
       <a href="#platform" data-i18n="nav1">Develop</a>
       <a href="#platform" data-i18n="nav2">Represent</a>
@@ -497,6 +502,7 @@ footer .brand{color:var(--on-ink)}
   <img class="hero-img" src="img/67.webp" alt="Piscina de nado infinita frente a una villa contemporánea de tres niveles en Tamarindo" width="2400" height="1602" fetchpriority="high" data-i18n-alt="heroalt">
   <div class="wrap">
     <div>
+      <img class="hero-lockup" src="img/orbayis-logo-web.png" alt="ORBAYIS — A Higher State of Living" width="768" height="512">
       <h1 id="h1" data-i18n="h1">Creamos la residencia. <em>Operamos la experiencia.</em></h1>
       <p class="lede" data-i18n="herolede">Luxury residential development, owner representation y private villa operations en Guanacaste, bajo un solo equipo responsable.</p>
       <form class="quick" id="quick" aria-label="Evaluación rápida">
@@ -768,7 +774,7 @@ footer .brand{color:var(--on-ink)}
     <div class="rt-plan rt-external">
       <div>
         <span class="tag" data-i18n="exttag">Para villas privadas</span>
-        <h2 data-i18n="extt">Lleva un retreat Pleamar a tu villa</h2>
+        <h2 data-i18n="extt">Lleva un retreat ORBAYIS a tu villa</h2>
         <p class="lede" style="margin-top:22px" data-i18n="extlede">Casa Caponera es nuestra referencia de nivel. Si ya tienes una villa y un equipo de administración, podemos sumar la producción de wellness y concierge, siempre que la propiedad iguale o supere ese estándar de lujo, privacidad y operación.</p>
         <ul class="points">
           <li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="ext1">Property Fit Review comparado con el estándar Casa Caponera: espacio, accesos, cocina, amenidades y servicio.</span></li>
@@ -816,7 +822,7 @@ footer .brand{color:var(--on-ink)}
         <div class="done" role="status" tabindex="-1">
           <svg class="ic mark-done" style="width:40px;height:40px" aria-hidden="true"><use href="#i-done"/></svg>
           <h3 data-i18n="dt">Recibido</h3>
-          <p data-i18n="xdp">Gracias. Revisaremos la información y te contactaremos para confirmar si la propiedad hace fit con Pleamar.</p>
+          <p data-i18n="xdp">Gracias. Revisaremos la información y te contactaremos para confirmar si la propiedad hace fit con ORBAYIS.</p>
         </div>
       </form>
     </div>
@@ -895,7 +901,7 @@ footer .brand{color:var(--on-ink)}
   <div class="wrap">
     <div class="dev-head">
       <div><h2 id="developers-t" data-i18n="devt">Construye con el operador ya sentado en la mesa.</h2></div>
-      <p class="lede" data-i18n="devlede">Para developers y propietarios que quieren crear una residencia extraordinaria sin heredar la complejidad de operarla. Pleamar convierte el proyecto en una casa lista para vivir, recibir y formar parte de una colección privada.</p>
+      <p class="lede" data-i18n="devlede">Para developers y propietarios que quieren crear una residencia extraordinaria sin heredar la complejidad de operarla. ORBAYIS convierte el proyecto en una casa lista para vivir, recibir y formar parte de una colección privada.</p>
     </div>
     <div class="dev-path">
       <article class="dev-step"><span class="num">01</span><h3 data-i18n="dv1">Define</h3><p data-i18n="dv1p">Programa, huésped objetivo, estándares operativos y decisiones que afectan el uso real de la casa.</p></article>
@@ -905,7 +911,7 @@ footer .brand{color:var(--on-ink)}
     </div>
     <div class="dev-value">
       <div><h3 data-i18n="devvalue">Una ventaja para vender. Una solución para entregar.</h3><p class="lede" style="margin-top:18px" data-i18n="devvaluep">El developer puede ofrecer a sus compradores una residencia respaldada por operación profesional desde el primer día; el propietario recibe una sola relación en lugar de administrar una red de proveedores.</p></div>
-      <ul class="points"><li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="dvp1">Mayor confianza durante la venta y la entrega.</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="dvp2">Estándares compartidos sin borrar la identidad de cada casa.</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="dvp3">Elegibilidad para la Pleamar Private Collection después de la evaluación.</span></li></ul>
+      <ul class="points"><li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="dvp1">Mayor confianza durante la venta y la entrega.</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="dvp2">Estándares compartidos sin borrar la identidad de cada casa.</span></li><li><svg class="ic" aria-hidden="true"><use href="#i-done"/></svg><span data-i18n="dvp3">Elegibilidad para la ORBAYIS Private Collection después de la evaluación.</span></li></ul>
     </div>
   </div>
 </section>
@@ -913,7 +919,7 @@ footer .brand{color:var(--on-ink)}
 <section class="circle" id="circle" aria-labelledby="circle-t">
   <div class="wrap">
     <div class="circle-head">
-      <div><h2 id="circle-t" data-i18n="circlet">Pleamar Private Circle. Acceso por relación.</h2></div>
+      <div><h2 id="circle-t" data-i18n="circlet">ORBAYIS Private Circle. Acceso por relación.</h2></div>
       <p class="lede" data-i18n="circlelede">Una comunidad privada de propietarios, developers, principals, family offices y aliados estratégicos que comparten una visión de largo plazo para residencias excepcionales en Costa Rica.</p>
     </div>
     <div class="circle-criteria">
@@ -923,7 +929,7 @@ footer .brand{color:var(--on-ink)}
       <article class="criterion"><span class="num">04</span><h3 data-i18n="cc4">Discreción</h3><p data-i18n="cc4p">Respeto por la privacidad, la debida diligencia y los estándares de la comunidad.</p></article>
     </div>
     <div class="circle-gate">
-      <article class="circle-track"><span class="platform-kicker" data-i18n="ct1k">Residences & developers</span><h3 data-i18n="ct1">Pleamar Private Collection</h3><p data-i18n="ct1p">El acceso nace de una relación activa con Pleamar y de una propiedad capaz de superar una evaluación de diseño, construcción, privacidad y operación.</p><ul><li data-i18n="ct1a">La membresía no se compra por separado</li><li data-i18n="ct1b">Cada casa debe alcanzar o superar el estándar Casa Caponera</li><li data-i18n="ct1c">La propiedad y sus principals pasan por admisión privada</li></ul></article>
+      <article class="circle-track"><span class="platform-kicker" data-i18n="ct1k">Residences & developers</span><h3 data-i18n="ct1">ORBAYIS Private Collection</h3><p data-i18n="ct1p">El acceso nace de una relación activa con ORBAYIS y de una propiedad capaz de superar una evaluación de diseño, construcción, privacidad y operación.</p><ul><li data-i18n="ct1a">La membresía no se compra por separado</li><li data-i18n="ct1b">Cada casa debe alcanzar o superar el estándar Casa Caponera</li><li data-i18n="ct1c">La propiedad y sus principals pasan por admisión privada</li></ul></article>
       <article class="circle-track"><span class="platform-kicker" data-i18n="ct2k">Private capital</span><h3 data-i18n="ct2">Capital y alianzas estratégicas</h3><p data-i18n="ct2p">Conversaciones privadas con principals, family offices y socios capaces de aportar capital paciente, criterio y relaciones relevantes.</p><ul><li data-i18n="ct2a">Experiencia o sofisticación verificable</li><li data-i18n="ct2b">Horizonte de inversión de largo plazo</li><li data-i18n="ct2c">Elegibilidad, debida diligencia y documentación legal</li></ul></article>
     </div>
     <div class="circle-action"><p data-i18n="circledisclaimer">La información de este sitio no constituye una oferta de valores ni una solicitud de inversión. Cualquier oportunidad se presentará de forma privada, únicamente a personas elegibles y sujeta a revisión legal, debida diligencia y documentación definitiva.</p><a class="btn" href="#evaluar"><span data-i18n="circlecta">Solicitar una introducción privada</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
@@ -932,10 +938,10 @@ footer .brand{color:var(--on-ink)}
 
 <section class="start" id="preguntas" aria-labelledby="start-t">
   <div class="wrap">
-    <h2 id="start-t" data-i18n="startt">Cómo comienza un mandato Pleamar</h2>
+    <h2 id="start-t" data-i18n="startt">Cómo comienza un mandato ORBAYIS</h2>
     <ol class="steps">
       <li><h3 data-i18n="st1t">Conversación privada</h3><p data-i18n="st1p">Entendemos la propiedad, el proyecto, las personas involucradas y el resultado que quieres proteger.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
-      <li><h3 data-i18n="st2t">Property or Project Review</h3><p data-i18n="st2p">Revisamos diseño, obra, operación, equipo y riesgos para determinar dónde Pleamar agrega más valor.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
+      <li><h3 data-i18n="st2t">Property or Project Review</h3><p data-i18n="st2p">Revisamos diseño, obra, operación, equipo y riesgos para determinar dónde ORBAYIS agrega más valor.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
       <li><h3 data-i18n="st3t">Mandato y estándar</h3><p data-i18n="st3p">Definimos responsabilidad, alcance, controles y criterios de éxito antes de asumir el proyecto o la residencia.</p><svg class="ic" aria-hidden="true"><use href="#i-sched"/></svg></li>
     </ol>
 
@@ -943,7 +949,7 @@ footer .brand{color:var(--on-ink)}
       <h2 data-i18n="faqt" style="font-size:clamp(2.2rem,4vw,3.25rem)">Preguntas privadas</h2>
       <div>
         <details><summary><span data-i18n="fq1">¿Pueden entrar a un proyecto que ya comenzó?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa1">Sí. Primero hacemos un Project Review para identificar decisiones pendientes, riesgos, contratos y brechas antes de proponer un mandato.</p></details>
-        <details><summary><span data-i18n="fq2">¿Puede un developer ofrecer Pleamar a sus compradores?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa2">Sí. Podemos estructurar una alianza para apoyar diseño operativo, entrega, owner representation y operación posterior sin reemplazar la identidad del proyecto.</p></details>
+        <details><summary><span data-i18n="fq2">¿Puede un developer ofrecer ORBAYIS a sus compradores?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa2">Sí. Podemos estructurar una alianza para apoyar diseño operativo, entrega, owner representation y operación posterior sin reemplazar la identidad del proyecto.</p></details>
         <details><summary><span data-i18n="fq3">¿Todas las casas entran a la Private Collection?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa3">No. La propiedad debe superar una evaluación de arquitectura, privacidad, sistemas, comodidad, mantenimiento y capacidad de servicio.</p></details>
         <details><summary><span data-i18n="fq4">¿En qué zonas trabajan?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa4">Trabajamos en Guanacaste de forma selectiva. La ubicación, el alcance y nuestra capacidad de responder por el estándar determinan la aceptación.</p></details>
         <details><summary><span data-i18n="fq5">¿Cómo se ingresa al Private Circle?</span><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></summary><p data-i18n="fa5">Por referencia o solicitud privada, seguida de verificación, conversación de fit y, cuando corresponde, debida diligencia. Cumplir los requisitos no garantiza admisión.</p></details>
@@ -987,7 +993,7 @@ footer .brand{color:var(--on-ink)}
       <div class="done" role="status" tabindex="-1" id="done">
         <svg class="ic mark-done" style="width:40px;height:40px" aria-hidden="true"><use href="#i-done"/></svg>
         <h3 data-i18n="dt">Correo preparado</h3>
-        <p data-i18n="dp">Se abrió un borrador dirigido a Pleamar. Revísalo y presiona enviar desde tu aplicación de correo.</p>
+        <p data-i18n="dp">Se abrió un borrador dirigido a ORBAYIS. Revísalo y presiona enviar desde tu aplicación de correo.</p>
       </div>
     </form>
   </div>
@@ -997,10 +1003,10 @@ footer .brand{color:var(--on-ink)}
 <footer class="ink">
   <div class="wrap">
     <div>
-      <a class="brand" href="#top"><svg aria-hidden="true"><use href="#i-wave"/></svg>PLEAMAR</a>
+      <a class="brand" href="#top"><img class="brand-mark" src="img/orbayis-symbol-192.png" alt="" width="192" height="166">ORBAYIS</a>
       <p style="margin-top:12px" data-i18n="foot1">Luxury Residential Developer · Owner's Representative · Private Villa Operator</p>
     </div>
-    <p><a href="mailto:aletamacosta@gmail.com">aletamacosta@gmail.com</a><br>© <span id="yr">2026</span> Pleamar</p>
+    <p><a href="mailto:aletamacosta@gmail.com">aletamacosta@gmail.com</a><br>© <span id="yr">2026</span> ORBAYIS</p>
   </div>
 </footer>
 
@@ -1067,11 +1073,11 @@ footer .brand{color:var(--on-ink)}
     rpt:'Host your retreat at Casa Caponera', rp1:'A private home for up to 12 guests, with ocean views and a 25-yard pool.', rp2:'Sauna, cold plunge, massage, sound healing and chef coordinated in one plan.', rp3:'Dates, lodging and programming shaped around your group.',
     rfg:'Group size', rfg1:'4 to 6 people', rfg2:'7 to 9 people', rfg3:'10 to 12 people', rfd:'Approximate month', rfi:'What interests you?', ri1:'Yoga', ri2:'Meditation', ri3:'Massage', ri4:'Cacao', ri5:'Healthy chef',
     rfm:'Tell us about your group (optional)', rfsend:'Check availability', rdp:'Thank you. We’ll be in touch soon with availability and a recommended program for your group.',
-    exttag:'For private villas', extt:'Bring a Pleamar retreat to your villa', extlede:'Casa Caponera is our benchmark. If you already have a villa and a management team, we can add wellness and concierge production, provided the property meets or exceeds that standard of luxury, privacy and operations.',
+    exttag:'For private villas', extt:'Bring an ORBAYIS retreat to your villa', extlede:'Casa Caponera is our benchmark. If you already have a villa and a management team, we can add wellness and concierge production, provided the property meets or exceeds that standard of luxury, privacy and operations.',
     ext1:'A Property Fit Review against the Casa Caponera standard: space, access, kitchen, amenities and service.', ext2:'Programming scaled to the number of guests, nights and selected experiences.', ext3:'We integrate with your existing property manager or staff.',
     xfloc:'Property location', xfurl:'Property link or photo folder (optional)', xfbeds:'Bedrooms', xfg4:'13 to 16 people', xfg5:'17 or more', xfnights:'Estimated length', xfn1:'2 to 3 nights', xfn2:'4 to 5 nights', xfn3:'6 nights or more',
     xfmgmt:'Current management', xfm1:'I have a property manager', xfm2:'I have my own staff', xfm3:'I manage it myself', xfa:'Available amenities', xa1:'Pool', xa2:'Ocean or nature view', xa3:'Practice space', xa4:'Chef-ready kitchen', xa5:'Massage area',
-    xfs:'Services you are interested in', xs1:'Full retreat production', xs2:'Private chef', xs3:'Wellness facilitators', xs4:'Transportation & experiences', xfm:'Tell us about the property and the retreat you imagine', xfsend:'Request a Property Fit Review', xdp:'Thank you. We’ll review the details and contact you to confirm whether the property is a fit for Pleamar.',
+    xfs:'Services you are interested in', xs1:'Full retreat production', xs2:'Private chef', xs3:'Wellness facilitators', xs4:'Transportation & experiences', xfm:'Tell us about the property and the retreat you imagine', xfsend:'Request a Property Fit Review', xdp:'Thank you. We’ll review the details and contact you to confirm whether the property is a fit for ORBAYIS.',
     svct:'Three functions. One accountability.', svclede:'The structure preserves continuity from development through the private operation of the residence.', svccap:'Development, owner representation and villa operations',
     th1:'Mandate', th2:'Accountability', th3:'Owner visibility',
     g1:'Develop', s1:'Concept, feasibility and owner brief', s1f:'Define the vision and real use', s1v:'Decisions, scope and base budget',
@@ -1090,30 +1096,30 @@ footer .brand{color:var(--on-ink)}
     l1:'Booked · 24', l2:'Owner stay · 3', l3:'Open · 4', ledcap:'Sample month summary',
     r1:'Booking income', r2:'Management commission', r3:'Cleaning and laundry', r4:'Maintenance (A/C filters, pump)', r5:'Deposit to owner',
     stmtnote:'Made-up figures to show the format. Your real estimate comes from your property or project review.',
-    devt:'Build with the operator already at the table.', devlede:'For developers and owners creating an extraordinary residence without inheriting the complexity of operating it. Pleamar turns the project into a home ready to live in, host and join a private collection.',
+    devt:'Build with the operator already at the table.', devlede:'For developers and owners creating an extraordinary residence without inheriting the complexity of operating it. ORBAYIS turns the project into a home ready to live in, host and join a private collection.',
     dv1:'Define', dv1p:'Program, target guest, operating standards and the decisions that shape how the home actually works.',
     dv2:'Represent', dv2p:'One voice for the owner across design, construction, procurement, budget and schedule.',
     dv3:'Commission', dv3p:'Punch list, warranties, inventory, staffing, manuals and preparation before the first arrival.',
     dv4:'Operate', dv4p:'Maintenance, hospitality, concierge, rental strategy and experiences under one continuous standard.',
     devvalue:'A sales advantage. A delivery solution.', devvaluep:'The developer can offer buyers a residence backed by professional operations from day one; the owner receives one accountable relationship instead of managing a web of vendors.',
-    dvp1:'Greater confidence through sale and handover.', dvp2:'Shared standards without erasing each home’s identity.', dvp3:'Eligibility for the Pleamar Private Collection after review.',
-    circlet:'Pleamar Private Circle. Access through relationship.', circlelede:'A private community of owners, developers, principals, family offices and strategic partners who share a long-term vision for exceptional residences in Costa Rica.',
+    dvp1:'Greater confidence through sale and handover.', dvp2:'Shared standards without erasing each home’s identity.', dvp3:'Eligibility for the ORBAYIS Private Collection after review.',
+    circlet:'ORBAYIS Private Circle. Access through relationship.', circlelede:'A private community of owners, developers, principals, family offices and strategic partners who share a long-term vision for exceptional residences in Costa Rica.',
     cc1:'Introduction', cc1p:'A referral from a member, client, adviser or partner—or an application we can verify.',
     cc2:'Alignment', cc2p:'A real commitment to quality, asset preservation, hospitality and long-term relationships.',
     cc3:'Capacity', cc3p:'Resources, experience and sophistication appropriate to the proposed project or relationship.',
     cc4:'Discretion', cc4p:'Respect for privacy, due diligence and the standards of the community.',
-    ct1k:'Residences & developers', ct1:'Pleamar Private Collection', ct1p:'Access begins with an active Pleamar relationship and a property capable of passing a review of design, construction, privacy and operations.',
+    ct1k:'Residences & developers', ct1:'ORBAYIS Private Collection', ct1p:'Access begins with an active ORBAYIS relationship and a property capable of passing a review of design, construction, privacy and operations.',
     ct1a:'Membership is not sold separately', ct1b:'Every home must meet or exceed the Casa Caponera standard', ct1c:'The property and its principals undergo private admission',
     ct2k:'Private capital', ct2:'Capital & strategic partnerships', ct2p:'Private conversations with principals, family offices and partners able to contribute patient capital, judgment and relevant relationships.',
     ct2a:'Verifiable experience or sophistication', ct2b:'Long-term investment horizon', ct2c:'Eligibility, due diligence and legal documentation',
     circledisclaimer:'The information on this site is not an offer of securities or a solicitation to invest. Any opportunity will be presented privately, only to eligible persons, and will remain subject to legal review, due diligence and definitive documentation.',
     circlecta:'Request a private introduction',
-    startt:'How a Pleamar mandate begins', st1t:'Private conversation', st1p:'We understand the property, the project, the people involved and the outcome you want to protect.',
-    st2t:'Property or Project Review', st2p:'We review design, construction, operations, team and risk to determine where Pleamar adds the most value.',
+    startt:'How an ORBAYIS mandate begins', st1t:'Private conversation', st1p:'We understand the property, the project, the people involved and the outcome you want to protect.',
+    st2t:'Property or Project Review', st2p:'We review design, construction, operations, team and risk to determine where ORBAYIS adds the most value.',
     st3t:'Mandate and standard', st3p:'We define accountability, scope, controls and success criteria before taking on the project or residence.',
     faqt:'Private questions',
     fq1:'Can you join a project already underway?', fa1:'Yes. We begin with a Project Review to identify open decisions, risks, contracts and gaps before proposing a mandate.',
-    fq2:'Can a developer offer Pleamar to buyers?', fa2:'Yes. We can structure a partnership around operational design, handover, owner representation and ongoing operations without replacing the project’s identity.',
+    fq2:'Can a developer offer ORBAYIS to buyers?', fa2:'Yes. We can structure a partnership around operational design, handover, owner representation and ongoing operations without replacing the project’s identity.',
     fq3:'Does every home enter the Private Collection?', fa3:'No. The property must pass a review of architecture, privacy, systems, comfort, maintenance and service capacity.',
     fq4:'Which areas do you serve?', fa4:'We work selectively across Guanacaste. Location, scope and our ability to stand behind the standard determine acceptance.',
     fq5:'How does someone enter the Private Circle?', fa5:'Through referral or private application, followed by verification, a fit conversation and, when relevant, due diligence. Meeting the criteria does not guarantee admission.',
@@ -1121,7 +1127,7 @@ footer .brand{color:var(--on-ink)}
     e1:'Personal review, not an automated response.', e2:'Confidentiality from the first contact.', e3:'Service in English or Spanish.',
     fn:'Name · required', fe:'Email · required', fw:'WhatsApp (optional)', fr:'Current stage', fr1:'Existing home', fr2:'In planning', fr3:'Under construction',
     fm:'Tell us about the project, property or relationship you imagine', fsend:'Request a private conversation', fpriv:'Your information stays on your device until you confirm sending it in your email app.',
-    dt:'Email ready', dp:'A draft addressed to Pleamar has opened. Review it and press send from your email app.',
+    dt:'Email ready', dp:'A draft addressed to ORBAYIS has opened. Review it and press send from your email app.',
     foot1:'Luxury Residential Developer · Owner’s Representative · Private Villa Operator'
   };
   const EVENTS = [
@@ -1140,7 +1146,7 @@ footer .brand{color:var(--on-ink)}
   $$('[data-i18n-alt]').forEach(el => original['alt:' + el.dataset.i18nAlt] = el.alt);
   $$('[data-i18n-aria]').forEach(el => original['aria:' + el.dataset.i18nAria] = el.getAttribute('aria-label'));
   let lang = 'es';
-  try { lang = localStorage.getItem('pleamar-lang') || (navigator.language.startsWith('es') ? 'es' : 'en'); } catch (e) {}
+  try { lang = localStorage.getItem('orbayis-lang') || (navigator.language.startsWith('es') ? 'es' : 'en'); } catch (e) {}
 
   function setLang(l) {
     lang = l;
@@ -1151,7 +1157,7 @@ footer .brand{color:var(--on-ink)}
     $$('.lang button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === l));
     $('#now-l').textContent = l === 'en' ? 'Now' : 'Ahora';
     renderEvents();
-    try { localStorage.setItem('pleamar-lang', l); } catch (e) {}
+    try { localStorage.setItem('orbayis-lang', l); } catch (e) {}
   }
   $$('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
 
@@ -1260,7 +1266,7 @@ footer .brand{color:var(--on-ink)}
       const data = new FormData(form);
       const service = form.elements.beds.selectedOptions[0].textContent.trim();
       const stage = form.querySelector('[name=rented]:checked')?.nextElementSibling?.textContent.trim() || '';
-      const subject = lang === 'en' ? `Private Pleamar inquiry — ${data.get('name')}` : `Solicitud privada Pleamar — ${data.get('name')}`;
+      const subject = lang === 'en' ? `Private ORBAYIS inquiry — ${data.get('name')}` : `Solicitud privada ORBAYIS — ${data.get('name')}`;
       const lines = lang === 'en'
         ? [`Name: ${data.get('name')}`, `Email: ${data.get('email')}`, `WhatsApp: ${data.get('phone') || '—'}`, `Location: ${data.get('loc')}`, `Interest: ${service}`, `Current stage: ${stage}`, '', 'Message:', data.get('msg') || '—']
         : [`Nombre: ${data.get('name')}`, `Correo: ${data.get('email')}`, `WhatsApp: ${data.get('phone') || '—'}`, `Ubicación: ${data.get('loc')}`, `Interés: ${service}`, `Etapa actual: ${stage}`, '', 'Mensaje:', data.get('msg') || '—'];

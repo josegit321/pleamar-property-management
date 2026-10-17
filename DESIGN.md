@@ -1,6 +1,6 @@
 ---
-name: Pleamar
-description: Luxury villa management in Guanacaste, presented as the villa's daily conditions report.
+name: ORBAYIS
+description: Integrated luxury residential development, owner representation and private villa operations in Guanacaste, proven through Casa Caponera.
 colors:
   pacific-ink: "#0A2328"
   ink-raised: "#0F2F36"
@@ -119,15 +119,15 @@ components:
     padding: "5px 9px"
 ---
 
-# Design System: Pleamar
+# Design System: ORBAYIS
 
 ## Overview
 
 **Creative North Star: "The Conditions Board"**
 
-Pleamar reads like the forecast board surfers check in Tamarindo: a dark, ruled panel of readouts an owner can absorb in a glance. Deep Pacific ink is the board's ground and owns the majority of the page; cool salt-white sections are where the owner sits down to read. One sun-amber is reserved for "now", for sunset and for the primary action, so its appearance always means something is happening or something can be done.
+ORBAYIS reads like the forecast board surfers check in Tamarindo: a dark, ruled panel of evidence an owner or developer can absorb in a glance. Deep Pacific ink is the board's ground and owns the majority of the page; cool salt-white sections are where the principal sits down to read. One sun-amber is reserved for "now", for sunset and for the primary action, so its appearance always means something is happening or something can be done.
 
-The density is deliberately high and calm: information sits in hairline-ruled rows, tall condensed numerals carry the data, and prose stays in a quiet grotesk. Luxury comes from precision and restraint rather than ornament. Real villa photography is the proof, and every showcase photo carries its care log directly beneath it. The system refuses the category default of full-bleed photo, serif slogan and three airy service cards.
+The density is deliberately high and calm: information sits in hairline-ruled rows, tall condensed numerals carry the data, and prose stays in a quiet grotesk. Luxury comes from precision and restraint rather than ornament. Casa Caponera photography, verified reputation and end-to-end authorship are the proof. The system refuses the category default of a full-bleed photo, serif slogan and disconnected service cards.
 
 **Key Characteristics:**
 - Ink-dominant page: ink sections alternate with salt reading sections, ink owning more than half.
